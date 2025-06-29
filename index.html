@@ -4,112 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>민우와 채은이의 결혼식에 초대합니다</title>
-    <!-- 테마 폰트와 본문 폰트 로드 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <!-- Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        /* --- 로컬 폰트 파일('font.ttf')을 'DarrelAllura'라는 이름으로 등록 --- */
+        /* --- 폰트 정의 --- */
         @font-face {
             font-family: 'DarrelAllura';
             src: url('font.ttf') format('truetype');
         }
-
-        /* --- 한글 폰트 '부크크명조' 등록 --- */
         @font-face {
             font-family: 'BookkMyungjo-Bd';
             src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
             font-weight: 700;
             font-style: normal;
         }
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        @import url("https://fonts.googleapis.com/css2?family=Asap&display=swap");
 
         :root {
-            --sea-deep-blue: #1A5276;
-            --sea-blue: #5499C7;
-            --sea-foam: #A9DFBF;
+            --sea-deep-blue: #015871;
             --coral-pink: #F1948A;
-            --sand-gold: #FAD7A0;
-            --text-light: #F8F9FA;
             --text-dark: #2C3E50;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'BookkMyungjo-Bd', 'Pretendard', sans-serif; /* 기본 한글 폰트 변경 */
+            font-family: 'BookkMyungjo-Bd', sans-serif;
             color: var(--text-dark);
             background: linear-gradient(180deg, #e0f7fa 0%, #b2ebf2 100%);
-            word-break: keep-all;
-            overflow-x: hidden;
         }
 
         .container {
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 600px; margin: 0 auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            position: relative;
+            overflow: hidden; position: relative;
         }
 
         .content-wrapper {
-            position: relative;
-            z-index: 2;
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(2px);
+            position: relative; z-index: 2;
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
+        /* --- 인트로 --- */
         #intro {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, var(--sea-deep-blue), var(--sea-blue));
             display: flex; justify-content: center; align-items: center;
-            z-index: 100; opacity: 1; transition: opacity 1s ease-out, visibility 1s; visibility: visible;
+            z-index: 101; opacity: 1; transition: opacity 1s ease-out, visibility 1s linear 1s; visibility: visible;
             overflow: hidden;
+            /* 기존 단색 배경 대신 새로운 수중 배경 그라데이션 적용 */
+            background: linear-gradient( to bottom, oklch(60% 0.2 230), oklch(60% 0.2 180) );
         }
         #intro.fade-out { opacity: 0; visibility: hidden; }
 
-        .bubble {
-            position: absolute; bottom: -150px;
-            background: radial-gradient(circle at 30% 30%, #fff, rgba(255, 255, 255, 0.1));
-            border-radius: 50%; opacity: 0.7; animation: rise-up 10s infinite;
+        /* --- Underwater Background by Wakana.K --- */
+        #underwater-background {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            --ratioW: 1;
         }
-        @keyframes rise-up {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-120vh) translateX(30px); }
+        #underwater-background * {
+            box-sizing: border-box;
         }
+        #underwater-background *::before,
+        #underwater-background *::after {
+            box-sizing: border-box;
+        }
+        #underwater-background #bg {
+            display: block; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: linear-gradient(to bottom, white, gray 25%, gray 60%, khaki);
+            opacity: 0.5; mix-blend-mode: overlay;
+        }
+        #underwater-background #surface {
+            mix-blend-mode: overlay; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        }
+        #underwater-background #surface::before,
+        #underwater-background #surface::after {
+            content: ""; display: block; position: absolute; bottom: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("https://images.unsplash.com/photo-1518837695005-2083093ee35b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTEyMTIwOTZ8&ixlib=rb-4.0.3&q=80&w=400");
+            background-repeat: repeat-x;
+            --duration: 8s; --lowHeight: 30vh; --highHeight: 70vh; --layerNum: 2; --index: 0; --opacity: 0.4;
+            animation: surface var(--duration) linear infinite;
+            animation-delay: calc( (var(--duration) / var(--layerNum)) * var(--index) * -1 );
+            opacity: 0; mask-image: linear-gradient(to top, white, transparent var(--lowHeight));
+        }
+        #underwater-background #surface::before { --index: 0; transform: scale3d(1, -1, 1); }
+        #underwater-background #surface::after { --index: 1; transform: scale3d(-1, -1, 1); }
+        #underwater-background #caustics {
+            position: fixed; bottom: 0; top: 0; width: 100vw; height: 100vh;
+        }
+        #underwater-background #caustics::before,
+        #underwater-background #caustics::after {
+            content: ""; display: block; position: absolute; bottom: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("https://images.unsplash.com/photo-1568145675395-66a2eda0c6d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTEyMTAwNjh8&ixlib=rb-4.0.3&q=80&w=400");
+            background-repeat: repeat;
+            --duration: 10s; --gapY: 0px;
+            background-size: calc(100vw / var(--ratioW)) 30vh;
+            animation: caustics calc(var(--duration) * (var(--ratioW))) linear infinite;
+            opacity: 0.3;
+            mask-image: linear-gradient( to top, white, transparent, transparent, transparent );
+        }
+        #underwater-background #caustics::after { --duration: 11s; --gapY: 10vh; animation-delay: -2s; transform: scale3d(-1, 1, 1); }
+        #underwater-background #sun {
+            mix-blend-mode: overlay; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        }
+        #underwater-background #sun div {
+            content: ""; display: block; position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+            transform-origin: 50vw 0; animation: sun 7s ease infinite alternate;
+            mask-image: linear-gradient( to bottom, transparent 15%, white 50%, white 55%, transparent 80% );
+        }
+        #underwater-background #sun #sun_layer1 {
+            background: linear-gradient( to right, transparent 39%, white 40%, transparent 41%, transparent 48.5%, white 50%, transparent 51.5%, transparent 53%, white 54%, transparent 55%, transparent 70%, white 71%, transparent 72% );
+        }
+        #underwater-background #sun #sun_layer2 {
+            animation-delay: -2s; animation-duration: 7.8s; animation-direction: alternate-reverse;
+            background: linear-gradient( to right, transparent 32%, white 33%, transparent 34%, transparent 38%, white 39%, transparent 40%, transparent 53%, white 54%, transparent 55%, transparent 63.5%, white 65%, transparent 66.5% );
+        }
+        #underwater-background #sun #sun_layer3 {
+            animation-delay: -5s; animation-duration: 8.5s;
+            background: linear-gradient( to right, transparent 38.5%, white 40%, transparent 41.5%, transparent 47%, white 48%, transparent 49%, transparent 52%, white 53%, transparent 54%, transparent 60%, white 61%, transparent 62% );
+        }
+        @keyframes surface { 0% { opacity: 0; background-position: center bottom; background-size: 100% var(--highHeight); } 20% { opacity: var(--opacity); } 100% { opacity: 0; background-position: center bottom calc(-1 * var(--lowHeight)); background-size: 100% var(--lowHeight); } }
+        @keyframes caustics { 0% { background-position: bottom var(--gapY) left; } 100% { background-position: bottom var(--gapY) left -100vw; } }
+        @keyframes sun { 0% { opacity: 0.1; transform: skew(5deg) scale3d(3, 1.5, 1); } 50% { opacity: 0.08; transform: skew(0deg) scale3d(1.5, 1, 1); } 100% { opacity: 0.1; transform: skew(-5deg) scale3d(3, 1, 1); } }
+        @media (orientation: portrait) { #underwater-background { --ratioW: 1; } }
+        @media (min-aspect-ratio: 1/1) { #underwater-background { --ratioW: 1; } }
+        @media (min-aspect-ratio: 2/1) { #underwater-background { --ratioW: 2; } }
+        @media (min-aspect-ratio: 3/1) { #underwater-background { --ratioW: 3; } }
+        @media (min-aspect-ratio: 4/1) { #underwater-background { --ratioW: 4; } }
+        @media (min-aspect-ratio: 5/1) { #underwater-background { --ratioW: 5; } }
+        /* --- End of Underwater Background --- */
 
-        #intro-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #intro-text-wrapper {
+        #intro-content { position: relative; z-index: 1; }
+        #intro-text-wrapper, .cursor {
             font-family: 'Great Vibes', cursive; font-size: 3.8rem;
-            line-height: 1.3; color: var(--sand-gold); text-shadow: 0 2px 10px rgba(0,0,0,0.5); text-align: center;
+            line-height: 1.3; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); text-align: center;
         }
-        .cursor { display: inline-block; animation: blink 0.7s infinite; margin-left: 2px; }
+        .cursor { display: inline-block; animation: blink 0.7s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
 
+        /* --- 메인 --- */
         #hero {
-            height: 75vh; position: relative; background-color: #333;
+            height: 75vh; position: relative; display: flex;
+            flex-direction: column; justify-content: flex-start;
+            align-items: center; padding-top: 60px;
         }
         #hero-background {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; filter: brightness(0.95);
         }
-
-        #hero-info { text-align: center; padding: 50px 20px; }
-        #hero-info h1 {
-            font-family: 'DarrelAllura', cursive;
-            /* 화면 너비에 따라 폰트 크기 자동 조절 */
-            font-size: clamp(2.8rem, 12vw, 4.5rem);
-            color: var(--sea-deep-blue); font-weight: normal;
-            white-space: nowrap; /* 줄바꿈 방지 */
+        #hero-title-area {
+            position: relative; z-index: 2; text-align: center;
         }
-        #hero-info p { font-size: 1.2rem; color: var(--text-dark); margin-top: 0.5rem; }
+        #hero-title-area h1, #hero-title-area p {
+            font-family: 'DarrelAllura', cursive;
+            color: var(--sea-deep-blue);
+            text-shadow: 0 1px 3px rgba(255,255,255,0.7);
+            white-space: nowrap;
+        }
+        #hero-title-area h1 { font-size: clamp(2.8rem, 12vw, 4.5rem); font-weight: normal; }
+        #hero-title-area p { font-size: clamp(1.5rem, 6vw, 2rem); margin-top: 0.5rem; }
 
         .content-section { padding: 80px 30px; }
         .title {
@@ -117,11 +171,7 @@
             font-weight: normal; color: var(--sea-deep-blue); margin-bottom: 25px;
             display: flex; align-items: center; justify-content: center; gap: 15px;
         }
-
-        .css-seashell {
-            width: 28px; height: 28px; position: relative;
-            display: inline-block; vertical-align: middle;
-        }
+        .css-seashell { width: 28px; height: 28px; position: relative; display: inline-block; vertical-align: middle; }
         .css-seashell .part {
             position: absolute; bottom: 5px; left: 50%;
             width: 6px; height: 18px; background-color: var(--coral-pink);
@@ -133,40 +183,32 @@
         .css-seashell .part-4 { transform: translateX(-50%) rotate(25deg); }
         .css-seashell .part-5 { transform: translateX(-50%) rotate(50deg); }
         .css-seashell .base {
-            position: absolute; bottom: 0; left: 50%;
-            width: 12px; height: 6px; background-color: var(--coral-pink);
-            border-radius: 50%; transform: translateX(-50%);
+            position: absolute; bottom: 0; left: 50%; width: 12px; height: 6px;
+            background-color: var(--coral-pink); border-radius: 50%; transform: translateX(-50%);
         }
 
         #invitation { border-top: 1px solid rgba(0,0,0,0.05); }
-        #invitation p { font-size: 1.05rem; line-height: 1.9; }
+        #invitation p { line-height: 1.9; }
         #invitation .names { font-size: 1.1rem; font-weight: 600; margin-top: 40px; }
 
-        /* Swiper.js 갤러리 스타일 */
         #gallery { padding-bottom: 50px; }
-        .swiper {
-            width: 100%;
-            padding-top: 20px;
-            padding-bottom: 50px;
-        }
+        .swiper { width: 100%; padding-top: 20px; padding-bottom: 50px; }
         .swiper-slide {
-            background-position: center;
-            background-size: cover;
-            width: 300px;
-            height: 400px; /* 세로 사진에 맞게 높이 조절 */
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background-position: center; background-size: cover;
+            width: 65%; max-width: 300px; aspect-ratio: 3 / 4;
+            border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); cursor: pointer;
         }
-        .swiper-slide img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
+        .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .swiper-pagination-bullet-active { background-color: var(--coral-pink); }
+
+        #lightbox {
+            position: fixed; z-index: 1001; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); display: none;
+            justify-content: center; align-items: center;
+            cursor: pointer;
         }
-        .swiper-pagination-bullet-active {
-            background-color: var(--coral-pink);
-        }
+        .lightbox-content { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+        .lightbox-close { display: none; }
 
         #location .map-container { width: 100%; margin-top: 30px; border-radius: 12px; overflow:hidden; }
         .root_daum_roughmap.root_daum_roughmap_landing { width: 100% !important; }
@@ -180,16 +222,26 @@
         }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(241, 148, 138, 0.5); }
 
-        #contact .account-info { border: 1px solid var(--sea-foam); background: rgba(255,255,255,0.7); border-radius: 12px; }
+        #contact .account-info { border: 1px solid #E0E0E0; background: rgba(255,255,255,0.7); border-radius: 12px; }
         #contact .account-info h4 { color: var(--sea-blue); }
 
         footer { padding: 50px 20px; text-align: center; background-color: var(--sea-blue); color: var(--text-light); }
-
     </style>
 </head>
 <body>
 
 <div id="intro">
+    <div id="underwater-background">
+        <div id='surface'></div>
+        <div id='caustics'></div>
+        <div id='bg'></div>
+        <div id='sun'>
+            <div id='sun_layer1'></div>
+            <div id='sun_layer2'></div>
+            <div id='sun_layer3'></div>
+        </div>
+    </div>
+
     <div id="intro-content">
         <div id="intro-text-wrapper">
             <span id="typing-text"></span><span class="cursor">|</span>
@@ -201,11 +253,10 @@
     <div class="content-wrapper">
         <section id="hero">
             <img id="hero-background" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2Fb15g6R%2FbtsOOMfoXUM%2FAAAAAAAAAAAAAAAAAAAAAJzKKCh21N-Tgrx1nQnwkUIeFTrTbdh8aL1lS74NJIlz%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1751295599%26allow_ip%3D%26allow_referer%3D%26signature%3DC0y1c7akECYm9b77zB9YD%252Fs5WgE%253D" alt="결혼식 메인 사진">
-        </section>
-
-        <section id="hero-info">
-            <h1>Minwoo + Chaeeun</h1>
-            <p>2025. 08. 31. SUN PM 12:00</p>
+            <div id="hero-title-area">
+                <h1>Minwoo + Chaeeun</h1>
+                <p>2025. 08. 31. 12:00</p>
+            </div>
         </section>
 
         <section id="invitation" class="content-section">
@@ -234,27 +285,8 @@
                 Our Moments
                 <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
             </h2>
-            <!-- Swiper -->
             <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="https://blog.kakaocdn.net/dna/bqh1yj/btsOOCjskh3/AAAAAAAAAAAAAAAAAAAAAPoFO94A-VOXI27Ous0jc-CaPdS4WQMQWFoIARRxhlF_/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=ZUudtS6ae1fAaORtbJM660uvNvA%3D" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://blog.kakaocdn.net/dna/rSUEw/btsOOAlGZ9W/AAAAAAAAAAAAAAAAAAAAAML828uYm8XLoGu-pDi5Zfl59Z18WQKRiF7z4PxVK45_/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=q9MhxkMY5EDyIR%2FSEhocA%2BYLiq8%3D" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://blog.kakaocdn.net/dna/DiiLU/btsOQeaVASu/AAAAAAAAAAAAAAAAAAAAAJy7MYJY1_fWIy3dLUHBAux0shV5rGWSU7YjemYqNZAv/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=b2X%2Fj1HJAf%2B%2B3%2FcpMSjJwxDdiB4%3D" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://blog.kakaocdn.net/dna/dW8lGG/btsOQJhbh6G/AAAAAAAAAAAAAAAAAAAAAJWnF2yh-O4E222MRZ79fPY_qMCJ-XPI4yUG7WX6M_0p/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=cHRJiScIzvMkX%2FnBU6OojqUjZ0s%3D" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://blog.kakaocdn.net/dna/dHw7n6/btsOQcc4pas/AAAAAAAAAAAAAAAAAAAAAP9Y24_5S_VEuPSMZ-Cvj5fEX0jMLaWKJwBsja6runal/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=yzJMNWh6o1USFE9Rpb5jDtYugdk%3D" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://blog.kakaocdn.net/dna/cHBs07/btsOQc5dbhb/AAAAAAAAAAAAAAAAAAAAANp5XMF28IGfwPredlU1lsYWjm1Gc9T6pjCB-7gU6rXw/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=6A8jSziPKzHJ6RXZXy0wa7NpWMs%3D" />
-                    </div>
+                <div class="swiper-wrapper" id="gallery-wrapper">
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -307,10 +339,13 @@
     </div>
 </div>
 
-<!-- 배경음악 플레이어 (숨김) -->
+<div id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+</div>
+
 <audio id="bgm-player" loop src="music.mp3"></audio>
 
-<!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 <script charset="UTF-8">
@@ -327,39 +362,24 @@
         const introSection = document.getElementById('intro');
         const bgmPlayer = document.getElementById('bgm-player');
 
-        // --- 인트로 숨김 및 음악 재생 로직 ---
-        function startExperience() {
-            introSection.classList.add('fade-out');
+        // 1.5초 후 인트로(글자, 배경) 사라짐
+        setTimeout(() => {
+            if(introSection) introSection.classList.add('fade-out');
+
+            // 음악 재생 시도
             const playPromise = bgmPlayer.play();
             if (playPromise !== undefined) {
                 playPromise.catch(error => {
-                    console.log("Autoplay was prevented. Waiting for user interaction.");
+                    console.log("음악 자동 재생이 차단되었습니다. 사용자의 클릭을 기다립니다.");
+                    document.body.addEventListener('click', () => bgmPlayer.play(), { once: true });
                 });
             }
-        }
+        }, 1500);
 
-        // --- 첫 상호작용 시 청첩장 시작 ---
-        ['click', 'scroll', 'touchstart', 'mousedown'].forEach(evt => {
-            window.addEventListener(evt, startExperience, { once: true });
-        });
-
-        // --- 물방울 효과 ---
-        for (let i = 0; i < 50; i++) {
-            const bubble = document.createElement('div');
-            bubble.classList.add('bubble');
-            const size = Math.random() * 20 + 5;
-            bubble.style.width = `${size}px`;
-            bubble.style.height = `${size}px`;
-            bubble.style.left = `${Math.random() * 100}vw`;
-            bubble.style.animationDelay = `${Math.random() * 10}s`;
-            bubble.style.animationDuration = `${Math.random() * 5 + 8}s`;
-            introSection.appendChild(bubble);
-        }
-
-        // --- JS 타이핑 효과 ---
+        // 타이핑 효과
         const typingTextElement = document.getElementById('typing-text');
         const cursorElement = document.querySelector('.cursor');
-        const lines = ["Welcome", "to our", "Wedding !"];
+        const lines = ["Welcome", "to our", "Wedding"];
         const typeSpeed = 50;
 
         function type(lineIndex = 0, charIndex = 0) {
@@ -377,33 +397,61 @@
                 setTimeout(() => type(lineIndex + 1, 0), typeSpeed * 5);
             }
         }
-
         type();
 
-        // --- Swiper 초기화 ---
+        // --- 동적 갤러리 생성 ---
+        const galleryWrapper = document.getElementById('gallery-wrapper');
+        const totalImages = 36; // 최대 이미지 개수
+
+        for (let i = 1; i <= totalImages; i++) {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+            const img = document.createElement('img');
+            img.src = `images/${i}.jpg`;
+            img.alt = `갤러리 사진 ${i}`;
+            // 이미지 로딩 실패 시, 슬라이드 숨김
+            img.onerror = () => { slide.style.display = 'none'; };
+            slide.appendChild(img);
+            galleryWrapper.appendChild(slide);
+        }
+
         var swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: "auto",
-            loop: true, // 무한 루프
+            loop: true,
             autoplay: {
-                delay: 2500, // 2.5초마다 자동 전환
+                delay: 2500,
                 disableOnInteraction: false,
             },
             coverflowEffect: {
                 rotate: 50,
                 stretch: 0,
-                depth: 100,
+                depth: 120,
                 modifier: 1,
                 slideShadows: true,
             },
-            pagination: {
-                el: ".swiper-pagination",
-            },
         });
 
-        // --- 계좌번호 복사 ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        galleryWrapper.addEventListener('click', function(e) {
+            if (e.target.tagName === 'IMG') {
+                swiper.autoplay.stop();
+                lightbox.style.display = 'flex';
+                lightboxImg.src = e.target.src;
+            }
+        });
+
+        function closeLightbox() {
+            swiper.autoplay.start();
+            lightbox.style.display = 'none';
+        }
+
+        lightbox.addEventListener('click', closeLightbox);
+
         const copyButtons = document.querySelectorAll('.copy-btn');
         copyButtons.forEach(button => {
             button.addEventListener('click', () => {
