@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>민우와 채은이의 결혼식에 초대합니다</title>
+    <!-- 테마 폰트와 본문 폰트 로드 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        /* --- 로컬 폰트 파일('font.ttf')을 'DarrelAllura'라는 이름으로 등록 --- */
+        @font-face {
+            font-family: 'DarrelAllura';
+            src: url('font.ttf') format('truetype');
+        }
+
+        /* --- 한글 폰트 '부크크명조' 등록 --- */
+        @font-face {
+            font-family: 'BookkMyungjo-Bd';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        :root {
+            --sea-deep-blue: #1A5276;
+            --sea-blue: #5499C7;
+            --sea-foam: #A9DFBF;
+            --coral-pink: #F1948A;
+            --sand-gold: #FAD7A0;
+            --text-light: #F8F9FA;
+            --text-dark: #2C3E50;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'BookkMyungjo-Bd', 'Pretendard', sans-serif; /* 기본 한글 폰트 변경 */
+            color: var(--text-dark);
+            background: linear-gradient(180deg, #e0f7fa 0%, #b2ebf2 100%);
+            word-break: keep-all;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+        }
+
+        #intro {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, var(--sea-deep-blue), var(--sea-blue));
+            display: flex; justify-content: center; align-items: center;
+            z-index: 100; opacity: 1; transition: opacity 1s ease-out, visibility 1s; visibility: visible;
+            overflow: hidden;
+        }
+        #intro.fade-out { opacity: 0; visibility: hidden; }
+
+        .bubble {
+            position: absolute; bottom: -150px;
+            background: radial-gradient(circle at 30% 30%, #fff, rgba(255, 255, 255, 0.1));
+            border-radius: 50%; opacity: 0.7; animation: rise-up 10s infinite;
+        }
+        @keyframes rise-up {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-120vh) translateX(30px); }
+        }
+
+        #intro-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #intro-text-wrapper {
+            font-family: 'Great Vibes', cursive; font-size: 3.8rem;
+            line-height: 1.3; color: var(--sand-gold); text-shadow: 0 2px 10px rgba(0,0,0,0.5); text-align: center;
+        }
+        .cursor { display: inline-block; animation: blink 0.7s infinite; margin-left: 2px; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        #hero {
+            height: 75vh; position: relative; background-color: #333;
+        }
+        #hero-background {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; filter: brightness(0.95);
+        }
+
+        #hero-info { text-align: center; padding: 50px 20px; }
+        #hero-info h1 {
+            font-family: 'DarrelAllura', cursive;
+            /* 화면 너비에 따라 폰트 크기 자동 조절 */
+            font-size: clamp(2.8rem, 12vw, 4.5rem);
+            color: var(--sea-deep-blue); font-weight: normal;
+            white-space: nowrap; /* 줄바꿈 방지 */
+        }
+        #hero-info p { font-size: 1.2rem; color: var(--text-dark); margin-top: 0.5rem; }
+
+        .content-section { padding: 80px 30px; }
+        .title {
+            font-family: 'Great Vibes', cursive; font-size: 2.5rem;
+            font-weight: normal; color: var(--sea-deep-blue); margin-bottom: 25px;
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+        }
+
+        .css-seashell {
+            width: 28px; height: 28px; position: relative;
+            display: inline-block; vertical-align: middle;
+        }
+        .css-seashell .part {
+            position: absolute; bottom: 5px; left: 50%;
+            width: 6px; height: 18px; background-color: var(--coral-pink);
+            transform-origin: bottom center; border-radius: 4px 4px 0 0; opacity: 0.8;
+        }
+        .css-seashell .part-1 { transform: translateX(-50%) rotate(-50deg); }
+        .css-seashell .part-2 { transform: translateX(-50%) rotate(-25deg); }
+        .css-seashell .part-3 { transform: translateX(-50%) rotate(0deg); height: 20px; }
+        .css-seashell .part-4 { transform: translateX(-50%) rotate(25deg); }
+        .css-seashell .part-5 { transform: translateX(-50%) rotate(50deg); }
+        .css-seashell .base {
+            position: absolute; bottom: 0; left: 50%;
+            width: 12px; height: 6px; background-color: var(--coral-pink);
+            border-radius: 50%; transform: translateX(-50%);
+        }
+
+        #invitation { border-top: 1px solid rgba(0,0,0,0.05); }
+        #invitation p { font-size: 1.05rem; line-height: 1.9; }
+        #invitation .names { font-size: 1.1rem; font-weight: 600; margin-top: 40px; }
+
+        /* Swiper.js 갤러리 스타일 */
+        #gallery { padding-bottom: 50px; }
+        .swiper {
+            width: 100%;
+            padding-top: 20px;
+            padding-bottom: 50px;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px;
+            height: 400px; /* 세로 사진에 맞게 높이 조절 */
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: var(--coral-pink);
+        }
+
+        #location .map-container { width: 100%; margin-top: 30px; border-radius: 12px; overflow:hidden; }
+        .root_daum_roughmap.root_daum_roughmap_landing { width: 100% !important; }
+
+        .btn {
+            display: inline-block; padding: 12px 25px; margin: 15px 5px 0 5px;
+            border: none; background-color: var(--coral-pink);
+            color: white; text-decoration: none; border-radius: 30px;
+            font-weight: 700; transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(241, 148, 138, 0.4);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(241, 148, 138, 0.5); }
+
+        #contact .account-info { border: 1px solid var(--sea-foam); background: rgba(255,255,255,0.7); border-radius: 12px; }
+        #contact .account-info h4 { color: var(--sea-blue); }
+
+        footer { padding: 50px 20px; text-align: center; background-color: var(--sea-blue); color: var(--text-light); }
+
+    </style>
+</head>
+<body>
+
+<div id="intro">
+    <div id="intro-content">
+        <div id="intro-text-wrapper">
+            <span id="typing-text"></span><span class="cursor">|</span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content-wrapper">
+        <section id="hero">
+            <img id="hero-background" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2Fb15g6R%2FbtsOOMfoXUM%2FAAAAAAAAAAAAAAAAAAAAAJzKKCh21N-Tgrx1nQnwkUIeFTrTbdh8aL1lS74NJIlz%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1751295599%26allow_ip%3D%26allow_referer%3D%26signature%3DC0y1c7akECYm9b77zB9YD%252Fs5WgE%253D" alt="결혼식 메인 사진">
+        </section>
+
+        <section id="hero-info">
+            <h1>Minwoo + Chaeeun</h1>
+            <p>2025. 08. 31. SUN PM 12:00</p>
+        </section>
+
+        <section id="invitation" class="content-section">
+            <h2 class="title">
+                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
+                Invitation
+                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
+            </h2>
+            <p>
+                함께 있을 때 가장 나다운 모습이 되고,<br>
+                서로의 웃음이 하루의 가장 큰 행복이 되었습니다.<br><br>
+                이제 저희 두 사람, 사랑과 믿음으로<br>
+                하나가 되어 평생을 함께하려 합니다.<br><br>
+                귀한 걸음 하시어 저희의 첫 시작을<br>
+                따뜻한 격려와 축복으로 빛내주시길 바랍니다.
+            </p>
+            <div class="names">
+                김현수 · 윤혜영의 장남   <strong>김민우</strong><br>
+                김응빈 · 임성미의 장녀   <strong>김채은</strong>
+            </div>
+        </section>
+
+        <section id="gallery" class="content-section">
+            <h2 class="title">
+                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
+                Our Moments
+                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
+            </h2>
+            <!-- Swiper -->
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://blog.kakaocdn.net/dna/bqh1yj/btsOOCjskh3/AAAAAAAAAAAAAAAAAAAAAPoFO94A-VOXI27Ous0jc-CaPdS4WQMQWFoIARRxhlF_/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=ZUudtS6ae1fAaORtbJM660uvNvA%3D" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://blog.kakaocdn.net/dna/rSUEw/btsOOAlGZ9W/AAAAAAAAAAAAAAAAAAAAAML828uYm8XLoGu-pDi5Zfl59Z18WQKRiF7z4PxVK45_/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=q9MhxkMY5EDyIR%2FSEhocA%2BYLiq8%3D" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://blog.kakaocdn.net/dna/DiiLU/btsOQeaVASu/AAAAAAAAAAAAAAAAAAAAAJy7MYJY1_fWIy3dLUHBAux0shV5rGWSU7YjemYqNZAv/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=b2X%2Fj1HJAf%2B%2B3%2FcpMSjJwxDdiB4%3D" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://blog.kakaocdn.net/dna/dW8lGG/btsOQJhbh6G/AAAAAAAAAAAAAAAAAAAAAJWnF2yh-O4E222MRZ79fPY_qMCJ-XPI4yUG7WX6M_0p/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=cHRJiScIzvMkX%2FnBU6OojqUjZ0s%3D" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://blog.kakaocdn.net/dna/dHw7n6/btsOQcc4pas/AAAAAAAAAAAAAAAAAAAAAP9Y24_5S_VEuPSMZ-Cvj5fEX0jMLaWKJwBsja6runal/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=yzJMNWh6o1USFE9Rpb5jDtYugdk%3D" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://blog.kakaocdn.net/dna/cHBs07/btsOQc5dbhb/AAAAAAAAAAAAAAAAAAAAANp5XMF28IGfwPredlU1lsYWjm1Gc9T6pjCB-7gU6rXw/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1751295599&allow_ip=&allow_referer=&signature=6A8jSziPKzHJ6RXZXy0wa7NpWMs%3D" />
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <section id="location" class="content-section">
+            <h2 class="title">
+                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
+                Location
+                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
+            </h2>
+            <p>
+                <strong>2025년 8월 31일 일요일 낮 12시</strong><br>
+                롯데호텔 월드(잠실) 사파이어볼룸
+            </p>
+            <div class="map-container">
+                <div id="daumRoughmapContainer1750824419386" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+            </div>
+            <a href="https://kko.to/O9dESsYlA1" target="_blank" class="btn">카카오맵 바로가기</a>
+        </section>
+
+        <section id="contact" class="content-section">
+            <h2 class="title">
+                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
+                Gift
+                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
+            </h2>
+            <p>참석이 어려우신 분들을 위해<br>계좌번호를 기재하였습니다.<br>따뜻한 마음 감사히 간직하겠습니다.</p>
+
+            <div class="account-info">
+                <h4>신랑측 계좌</h4>
+                <div class="account-row">
+                    <span><strong>신랑 김민우</strong><br>땡땡은행 123-456-789012</span>
+                    <button class="copy-btn" data-clipboard-text="123456789012">복사</button>
+                </div>
+            </div>
+
+            <div class="account-info">
+                <h4>신부측 계좌</h4>
+                <div class="account-row">
+                    <span><strong>신부 김채은</strong><br>꾹꾹은행 987-654-321098</span>
+                    <button class="copy-btn" data-clipboard-text="987654321098">복사</button>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>저희의 새로운 시작을 축복해주셔서 감사합니다.</p>
+        </footer>
+    </div>
+</div>
+
+<!-- 배경음악 플레이어 (숨김) -->
+<audio id="bgm-player" loop src="music.mp3"></audio>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+<script charset="UTF-8">
+    new daum.roughmap.Lander({
+        "timestamp" : "1750824419386",
+        "key" : "466ik7xz48b",
+        "mapWidth" : "100%",
+        "mapHeight" : "360"
+    }).render();
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const introSection = document.getElementById('intro');
+        const bgmPlayer = document.getElementById('bgm-player');
+
+        // --- 인트로 숨김 및 음악 재생 로직 ---
+        function startExperience() {
+            introSection.classList.add('fade-out');
+            const playPromise = bgmPlayer.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Autoplay was prevented. Waiting for user interaction.");
+                });
+            }
+        }
+
+        // --- 첫 상호작용 시 청첩장 시작 ---
+        ['click', 'scroll', 'touchstart', 'mousedown'].forEach(evt => {
+            window.addEventListener(evt, startExperience, { once: true });
+        });
+
+        // --- 물방울 효과 ---
+        for (let i = 0; i < 50; i++) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            const size = Math.random() * 20 + 5;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}vw`;
+            bubble.style.animationDelay = `${Math.random() * 10}s`;
+            bubble.style.animationDuration = `${Math.random() * 5 + 8}s`;
+            introSection.appendChild(bubble);
+        }
+
+        // --- JS 타이핑 효과 ---
+        const typingTextElement = document.getElementById('typing-text');
+        const cursorElement = document.querySelector('.cursor');
+        const lines = ["Welcome", "to our", "Wedding !"];
+        const typeSpeed = 50;
+
+        function type(lineIndex = 0, charIndex = 0) {
+            if (lineIndex >= lines.length) {
+                cursorElement.style.display = 'none';
+                return;
+            }
+            if (charIndex < lines[lineIndex].length) {
+                typingTextElement.innerHTML += lines[lineIndex].charAt(charIndex);
+                setTimeout(() => type(lineIndex, charIndex + 1), typeSpeed);
+            } else {
+                if (lineIndex < lines.length - 1) {
+                    typingTextElement.innerHTML += '<br>';
+                }
+                setTimeout(() => type(lineIndex + 1, 0), typeSpeed * 5);
+            }
+        }
+
+        type();
+
+        // --- Swiper 초기화 ---
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            loop: true, // 무한 루프
+            autoplay: {
+                delay: 2500, // 2.5초마다 자동 전환
+                disableOnInteraction: false,
+            },
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+        });
+
+        // --- 계좌번호 복사 ---
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const textToCopy = button.getAttribute('data-clipboard-text').replace(/-/g, '');
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => { alert('계좌번호가 복사되었습니다.'); })
+                    .catch(err => { alert('복사에 실패했습니다.'); });
+            });
+        });
+    });
+</script>
+</body>
+</html>
