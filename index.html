@@ -61,7 +61,7 @@
             transition: opacity 1s ease-out, visibility 1s linear 1s; /* fade-out 트랜지션 */
             visibility: visible;
             overflow: hidden;
-            background: linear-gradient( to bottom, oklch(60% 0.2 230), oklch(60% 0.2 180) );
+            background: linear-gradient( to bottom, oklch(60% 0.2 230), oklch(0.761 0.113 248.784));
             cursor: pointer;
         }
         #intro.fade-out {
@@ -77,7 +77,6 @@
         }
         #underwater-background * { box-sizing: border-box; }
         #underwater-background *::before, #underwater-background *::after { box-sizing: border-box; }
-        #underwater-background #bg { display: block; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: linear-gradient(to bottom, white, gray 25%, gray 60%, khaki); opacity: 0.5; mix-blend-mode: overlay; }
         #underwater-background #surface { mix-blend-mode: overlay; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; }
         #underwater-background #surface::before, #underwater-background #surface::after { content: ""; display: block; position: absolute; bottom: 0; left: 0; width: 100vw; height: 100vh; background-image: url("https://images.unsplash.com/photo-1518837695005-2083093ee35b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTEyMTIwOTZ8&ixlib=rb-4.0.3&q=80&w=400"); background-repeat: repeat-x; --duration: 8s; --lowHeight: 30vh; --highHeight: 70vh; --layerNum: 2; --index: 0; --opacity: 0.4; animation: surface var(--duration) linear infinite; animation-delay: calc( (var(--duration) / var(--layerNum)) * var(--index) * -1 ); opacity: 0; mask-image: linear-gradient(to top, white, transparent var(--lowHeight)); }
         #underwater-background #surface::before { --index: 0; transform: scale3d(1, -1, 1); }
@@ -102,22 +101,34 @@
 
         /* --- 물거품 효과 --- */
         #bubble-wrapper {
-            position: absolute;
+            position: fixed; /* Changed from absolute to fixed to persist across page */
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: 0; /* 배경과 콘텐츠 사이에 위치 */
+            z-index: 9999; /* Above underwater background, below content */
         }
+
         .bubble {
             position: absolute;
             bottom: -30px;
-            background-color: rgba(255, 255, 255, 0.4);
             border-radius: 50%;
-            animation: rise 10s infinite ease-in;
-            opacity: 0;
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.6); /* Optional glow effect */
+            opacity: 10;
+            border: 2.5px solid transparent;
+            animation: rise 6s infinite ease-in;
+
+            /* --- 수정된 부분 --- */
+
+            /* 첫 번째 배경(물거품 내부)을 transparent(투명)로 변경합니다. */
+            background:
+                    linear-gradient(transparent, transparent),
+                    radial-gradient(circle at top left, #f3f3f3, #a9c4dc, #e2d9ea);
+
+            /* --- 나머지 코드는 동일 --- */
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            mix-blend-mode: multiply;
         }
 
         /* --- 수정: CSS에서 고정된 지연값 제거하고 JS에서 동적으로 제어 --- */
@@ -208,12 +219,98 @@
         .copy-btn { padding: 8px 15px; border: 1px solid var(--coral-pink); background-color: white; color: var(--coral-pink); border-radius: 20px; cursor: pointer; transition: all 0.3s; }
         .copy-btn:hover { background-color: var(--coral-pink); color: white; }
         footer { padding: 50px 20px; text-align: center; background-color: var(--sea-deep-blue); color: #fff; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+        }
+        .gallery-grid-item {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .gallery-grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .gallery-grid-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* 2. 클릭 시 나타날 전체 화면 모달 스타일 */
+        /* 모달 배경: 예시처럼 검은색으로 변경 */
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 1001;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .gallery-modal.active {
+            display: flex;
+        }
+
+        /* 모달 내부 Swiper: 위아래 여백 추가 (예제와 동일) */
+        .modal-swiper {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        /* 슬라이드 크기: 예제와 100% 동일하게 300x300 픽셀 정사각형으로 설정 */
+        .modal-swiper .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px;
+            height: 300px;
+        }
+
+        /* 슬라이드 내부 이미지 스타일 */
+        .modal-swiper .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 모달 닫기 버튼 스타일 */
+        .gallery-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 3rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        /* Swiper UI(버튼, 페이지) 색상 */
+        .modal-swiper .swiper-button-next,
+        .modal-swiper .swiper-button-prev {
+            color: white;
+            --swiper-navigation-size: 30px;
+        }
+        .modal-swiper .swiper-pagination-bullet-active {
+            background-color: white;
+        }
+
     </style>
+
+
 </head>
 <body>
-
+<div id="bubble-wrapper"></div>
 <div id="intro">
-    <div id="bubble-wrapper"></div>
 
     <div id="underwater-background">
         <div id='surface'></div>
@@ -237,12 +334,12 @@
     <div class="content-wrapper">
         <section id="hero">
             <img id="hero-background" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2Fb15g6R%2FbtsOOMfoXUM%2FAAAAAAAAAAAAAAAAAAAAAJzKKCh21N-Tgrx1nQnwkUIeFTrTbdh8aL1lS74NJIlz%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1751295599%26allow_ip%3D%26allow_referer%3D%26signature%3DC0y1c7akECYm9b77zB9YD%252Fs5WgE%253D" alt="결혼식 메인 사진">
-            <div id="hero-title-area">
-                <h1>Minwoo + Chaeeun</h1>
-                <p>2025. 08. 31. 12:00</p>
-            </div>
-        </section>
 
+        </section>
+        <div id="hero-title-area">
+            <h1>Minwoo + Chaeeun</h1>
+            <p>2025. 08. 31. 12:00</p>
+        </div>
         <section id="invitation" class="content-section">
             <h2 class="title">
                 <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
@@ -269,11 +366,92 @@
                 Our Moments
                 <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
             </h2>
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper" id="gallery-wrapper">
+                <div class="gallery-grid" id="gallery-grid-wrapper">
+                    <div class="gallery-grid-item" data-index="0"><img src="images/1.jpg" alt="갤러리 사진 1"></div>
+                    <div class="gallery-grid-item" data-index="1"><img src="images/2.jpg" alt="갤러리 사진 2"></div>
+                    <div class="gallery-grid-item" data-index="2"><img src="images/3.jpg" alt="갤러리 사진 3"></div>
+                    <div class="gallery-grid-item" data-index="3"><img src="images/4.jpg" alt="갤러리 사진 4"></div>
+                    <div class="gallery-grid-item" data-index="4"><img src="images/5.jpg" alt="갤러리 사진 5"></div>
+                    <div class="gallery-grid-item" data-index="5"><img src="images/6.jpg" alt="갤러리 사진 6"></div>
+                    <div class="gallery-grid-item" data-index="6"><img src="images/7.jpg" alt="갤러리 사진 7"></div>
+                    <div class="gallery-grid-item" data-index="7"><img src="images/8.jpg" alt="갤러리 사진 8"></div>
+                    <div class="gallery-grid-item" data-index="8"><img src="images/9.jpg" alt="갤러리 사진 9"></div>
+                    <div class="gallery-grid-item" data-index="9"><img src="images/10.jpg" alt="갤러리 사진 10"></div>
+                    <div class="gallery-grid-item" data-index="10"><img src="images/11.jpg" alt="갤러리 사진 11"></div>
+                    <div class="gallery-grid-item" data-index="11"><img src="images/12.jpg" alt="갤러리 사진 12"></div>
+                    <div class="gallery-grid-item" data-index="12"><img src="images/13.jpg" alt="갤러리 사진 13"></div>
+                    <div class="gallery-grid-item" data-index="13"><img src="images/14.jpg" alt="갤러리 사진 14"></div>
+                    <div class="gallery-grid-item" data-index="14"><img src="images/15.jpg" alt="갤러리 사진 15"></div>
+                    <div class="gallery-grid-item" data-index="15"><img src="images/16.jpg" alt="갤러리 사진 16"></div>
+                    <div class="gallery-grid-item" data-index="16"><img src="images/17.jpg" alt="갤러리 사진 17"></div>
+                    <div class="gallery-grid-item" data-index="17"><img src="images/18.jpg" alt="갤러리 사진 18"></div>
+                    <div class="gallery-grid-item" data-index="18"><img src="images/19.jpg" alt="갤러리 사진 19"></div>
+                    <div class="gallery-grid-item" data-index="19"><img src="images/20.jpg" alt="갤러리 사진 20"></div>
+                    <div class="gallery-grid-item" data-index="20"><img src="images/21.jpg" alt="갤러리 사진 21"></div>
+                    <div class="gallery-grid-item" data-index="21"><img src="images/22.jpg" alt="갤러리 사진 22"></div>
+                    <div class="gallery-grid-item" data-index="22"><img src="images/23.jpg" alt="갤러리 사진 23"></div>
+                    <div class="gallery-grid-item" data-index="23"><img src="images/24.jpg" alt="갤러리 사진 24"></div>
+                    <div class="gallery-grid-item" data-index="24"><img src="images/25.jpg" alt="갤러리 사진 25"></div>
+                    <div class="gallery-grid-item" data-index="25"><img src="images/26.jpg" alt="갤러리 사진 26"></div>
+                    <div class="gallery-grid-item" data-index="26"><img src="images/27.jpg" alt="갤러리 사진 27"></div>
+                    <div class="gallery-grid-item" data-index="27"><img src="images/28.jpg" alt="갤러리 사진 28"></div>
+                    <div class="gallery-grid-item" data-index="28"><img src="images/29.jpg" alt="갤러리 사진 29"></div>
+                    <div class="gallery-grid-item" data-index="29"><img src="images/30.jpg" alt="갤러리 사진 30"></div>
+                    <div class="gallery-grid-item" data-index="30"><img src="images/31.jpg" alt="갤러리 사진 31"></div>
+                    <div class="gallery-grid-item" data-index="31"><img src="images/32.jpg" alt="갤러리 사진 32"></div>
+                    <div class="gallery-grid-item" data-index="32"><img src="images/33.jpg" alt="갤러리 사진 33"></div>
+                    <div class="gallery-grid-item" data-index="33"><img src="images/34.jpg" alt="갤러리 사진 34"></div>
+                    <div class="gallery-grid-item" data-index="34"><img src="images/35.jpg" alt="갤러리 사진 35"></div>
+                    <div class="gallery-grid-item" data-index="35"><img src="images/36.jpg" alt="갤러리 사진 36"></div>
                 </div>
-            </div>
         </section>
+
+        <div id="gallery-modal" class="gallery-modal">
+            <div class="swiper modal-swiper">
+                <div class="swiper-wrapper" id="modal-swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/1.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/2.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/3.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/4.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/5.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/6.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/7.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/8.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/9.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/10.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/11.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/12.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/13.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/14.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/15.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/16.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/17.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/18.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/19.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/20.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/21.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/22.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/23.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/24.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/25.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/26.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/27.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/28.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/29.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/30.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/31.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/32.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/33.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/34.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/35.jpg" /></div>
+                    <div class="swiper-slide"><img src="images/36.jpg" /></div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <button type="button" class="gallery-modal-close">&times;</button>
+        </div>
+
 
         <section id="location" class="content-section">
             <h2 class="title">
@@ -349,17 +527,35 @@
         let introTimeout;
 
         const bubbleWrapper = document.getElementById('bubble-wrapper');
-        const bubbleCount = 40; // 생성할 물거품 개수
+        const bubbleCount = 40;
+
+        // 1. 물거품 생성을 멈출지 결정하는 '신호등' 변수 생성
+        let stopBubbleGeneration = false;
+
+        // 2. 6초 후에 신호등을 '멈춤'으로 변경
+        setTimeout(function() {
+            stopBubbleGeneration = true;
+        }, 6000); // 6000밀리초 = 6초
+
         for (let i = 0; i < bubbleCount; i++) {
             const bubble = document.createElement('div');
             bubble.className = 'bubble';
-            bubble.style.left = `${Math.random() * 98}%`; // 무작위 가로 위치
-            bubble.style.animationDuration = `${5 + Math.random() * 8}s`; // 무작위 지속 시간
-            // --- 수정: 애니메이션 지연 시간을 줄여 즉시 시작하도록 변경 ---
-            bubble.style.animationDelay = `0s`; // or `${Math.random() * 0.2}s` for slight variation
-            const size = `${10 + Math.random() * 20}px`; // 무작위 크기
+            bubble.style.left = `${Math.random() * 98}%`;
+            bubble.style.animationDuration = `${4 + Math.random() * 8}s`; // 지속시간은 자유롭게 조정
+            bubble.style.animationDelay = `${Math.random() * 5}s`; // 시작 시간을 조금씩 다르게 하여 자연스럽게
+            const size = `${10 + Math.random() * 20}px`;
             bubble.style.width = size;
             bubble.style.height = size;
+
+            // 3. 각 물거품이 애니메이션 반복을 마칠 때마다 이벤트를 감지
+            bubble.addEventListener('animationiteration', function(event) {
+                // 신호등이 '멈춤' 상태이면
+                if (stopBubbleGeneration) {
+                    // 해당 물거품을 보이지 않게 처리
+                    event.target.style.display = 'none';
+                }
+            });
+
             bubbleWrapper.appendChild(bubble);
         }
         // --- 물거품 생성 끝 ---
@@ -367,6 +563,10 @@
         function fadeOutIntro() {
             if (!introSection.classList.contains('fade-out')) {
                 introSection.classList.add('fade-out');
+                if (bubbleWrapper) {
+                    bubbleWrapper.style.pointerEvents = 'none';
+                }
+
                 const playPromise = bgmPlayer.play();
                 if (playPromise !== undefined) {
                     playPromise.catch(error => {
@@ -382,7 +582,10 @@
         introSection.addEventListener('click', fadeOutIntro);
 
         // --- 물거품 생성 (페이지 로드와 동시에 시작) ---
-
+// --- ★★★ 중요: 물거품 막(#bubble-wrapper)을 클릭해도 인트로가 넘어가도록 추가 ---
+        if (bubbleWrapper) {
+            bubbleWrapper.addEventListener('click', fadeOutIntro);
+        }
 
         // 타이핑 효과
         const typingTextElement = document.getElementById('typing-text');
@@ -413,48 +616,67 @@
         }
         type();
 
-        // --- 동적 갤러리 생성 ---
-        const galleryWrapper = document.getElementById('gallery-wrapper');
-        const totalImages = 36;
+        const galleryGridWrapper = document.getElementById('gallery-grid-wrapper');
+        const galleryModal = document.getElementById('gallery-modal');
+        const closeModalBtn = document.querySelector('.gallery-modal-close');
+        let modalSwiper; // 모달 Swiper 인스턴스를 저장할 변수
 
-        for (let i = 1; i <= totalImages; i++) {
-            const slide = document.createElement('div');
-            slide.className = 'swiper-slide';
-            const img = document.createElement('img');
-            img.src = `images/${i}.jpg`;
-            img.alt = `갤러리 사진 ${i}`;
-            img.onerror = () => { slide.style.display = 'none'; };
-            slide.appendChild(img);
-            galleryWrapper.appendChild(slide);
-        }
-
-        var swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
+// 1. 모달 Swiper 초기화 (페이지 로드 시 한 번만)
+        modalSwiper = new Swiper(".modal-swiper", {
+            effect: "coverflow", // ★★★ Coverflow 효과를 다시 적용합니다 ★★★
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: "auto",
             loop: true,
-            autoplay: { delay: 2500, disableOnInteraction: false, },
-            coverflowEffect: { rotate: 50, stretch: 0, depth: 120, modifier: 1, slideShadows: true, },
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: { // 페이지 번호 UI도 예제와 같이 다시 포함합니다
+                el: ".swiper-pagination",
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
         });
 
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-
-        galleryWrapper.addEventListener('click', function(e) {
-            if (e.target.tagName === 'IMG') {
-                swiper.autoplay.stop();
-                lightbox.style.display = 'flex';
-                lightboxImg.src = e.target.src;
+// 2. 그리드 아이템 클릭 시 모달 열기
+        galleryGridWrapper.addEventListener('click', function(e) {
+            const clickedItem = e.target.closest('.gallery-grid-item');
+            if (clickedItem) {
+                const clickedIndex = parseInt(clickedItem.dataset.index, 10);
+                galleryModal.classList.add('active');
+                modalSwiper.slideToLoop(clickedIndex, 0);
             }
         });
 
-        function closeLightbox() {
-            swiper.autoplay.start();
-            lightbox.style.display = 'none';
-        }
+// 3. 모달 닫기 버튼 클릭 시 모달 닫기
+        closeModalBtn.addEventListener('click', function() {
+            galleryModal.classList.remove('active');
+        });
 
-        lightbox.addEventListener('click', closeLightbox);
+// 4. 모달의 어두운 배경 클릭 시 닫기
+        galleryModal.addEventListener('click', function(e) {
+            if (e.target === galleryModal) {
+                galleryModal.classList.remove('active');
+            }
+        });
+
+// 4. 모달 닫기 버튼 클릭 시 모달 닫기
+        closeModalBtn.addEventListener('click', function() {
+            galleryModal.classList.remove('active');
+        });
+
+// 모달의 어두운 배경 클릭 시 닫기 (선택 사항)
+        galleryModal.addEventListener('click', function(e) {
+            if (e.target === galleryModal) {
+                galleryModal.classList.remove('active');
+            }
+        });
 
         const copyButtons = document.querySelectorAll('.copy-btn');
         copyButtons.forEach(button => {
