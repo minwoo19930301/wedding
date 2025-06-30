@@ -180,22 +180,50 @@
             position: relative;
             z-index: 1; /* 비눗방울보다 위에 오도록 설정 */
             text-align: center;
-        }
-        #intro-text-wrapper, .cursor {
-            font-family: 'Aston', cursive; font-size: 3.8rem;
             line-height: 1.3; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            font-family: 'Aston', cursive; font-size: 3.8rem;
+
         }
-        .cursor { display: inline-block; animation: blink 0.7s infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-        .intro-names strong {
-            font-size: 1.1rem;
-            font-weight: 700;
+        .fade-in-text {
+            font-family: 'Aston', cursive;
+            font-size: clamp(3rem, 10vw, 4rem);
+            line-height: 1.3;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
+        /* 텍스트 각 한 줄에 대한 스타일 (이제 애니메이션 없음) */
+        .fade-in-text .line {
+            /* 이 요소는 이제 글자들을 담는 역할만 합니다. */
+            /* 줄바꿈을 위해 비워둡니다. */
+        }
+
+        /* ★ 새로 추가: JavaScript로 생성될 한 글자(span)에 대한 스타일 */
+        .fade-in-text .line span {
+            opacity: 0; /* 시작 전에는 투명 */
+            display: inline-block; /* 한 글자씩 공간을 차지하도록 */
+            animation: fadeIn-inplace 0.8s ease-out forwards; /* '제자리' fadeIn 애니메이션 적용 */
+        }
+
+        /* ★ 새로 추가: 이동 없이 제자리에서 나타나는 애니메이션 키프레임 */
+        @keyframes fadeIn-inplace {
+            to {
+                opacity: 1;
+                transform: none; /* 이동 효과 제거 */
+            }
+        }
         /* --- 메인 (이하 기존과 동일) --- */
         #hero { height: 75vh; position: relative; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding-top: 60px; }
-        #hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.95);}
-        #hero-title-area { position: relative; z-index: 2; text-align: center; }
+        #hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.95);top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;}
+        #hero-title-area {
+            /* position과 z-index는 더 이상 필요 없으므로 삭제합니다. */
+            text-align: center;
+            /* 사진과 제목 사이에 적절한 간격을 줍니다. */
+            padding: 40px 30px 0;
+        }
         #hero-title-area h1, #hero-title-area p { font-family: 'DarrelAllura', cursive; color: var(--sea-deep-blue); text-shadow: 0 1px 3px rgba(255,255,255,0.7); white-space: nowrap; }
         #hero-title-area h1 { font-size: clamp(2.8rem, 12vw, 4.5rem); font-weight: normal; }
         #hero-title-area p { font-size: clamp(1.5rem, 6vw, 2rem); margin-top: 0.5rem; }
@@ -339,8 +367,11 @@
     </div>
 
     <div id="intro-content">
-        <div id="intro-text-wrapper">
-            <span id="typing-text"></span><span class="cursor">|</span>
+        <div class="fade-in-text">
+            <div class="line">Welcome</div>
+            <div class="line">to our</div>
+            <div class="line"> </div>
+            <div class="line">Wedding</div>
         </div>
     </div>
 </div>
@@ -351,10 +382,13 @@
             <img id="hero-background" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2Fb15g6R%2FbtsOOMfoXUM%2FAAAAAAAAAAAAAAAAAAAAAJzKKCh21N-Tgrx1nQnwkUIeFTrTbdh8aL1lS74NJIlz%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1751295599%26allow_ip%3D%26allow_referer%3D%26signature%3DC0y1c7akECYm9b77zB9YD%252Fs5WgE%253D" alt="결혼식 메인 사진">
 
         </section>
+
+        <section>
         <div id="hero-title-area">
             <h1>Minwoo + Chaeeun</h1>
             <p>2025. 08. 31. 12:00</p>
         </div>
+        </section>
         <section id="invitation" class="content-section">
             <h2 class="title">
                 <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
@@ -375,50 +409,71 @@
             </div>
         </section>
 
+
+
+
+        <section id="location" class="content-section">
+            <h2 class="title">
+                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
+                Location
+                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
+            </h2>
+            <p>
+                <strong>2025년 8월 31일 일요일 낮 12시</strong><br>
+                롯데호텔 월드(잠실) 사파이어볼룸
+            </p>
+            <div class="map-container">
+                <div id="daumRoughmapContainer1750824419386" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+            </div>
+            <div class="btn-group">
+                <a href="https://kko.to/O9dESsYlA1" target="_blank" class="btn">카카오맵 바로가기</a>
+            </div>
+        </section>
+
         <section id="gallery" class="content-section">
             <h2 class="title">
                 <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
-                Our Moments
+                Gallery
                 <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
             </h2>
-                <div class="gallery-grid" id="gallery-grid-wrapper">
-                    <div class="gallery-grid-item" data-index="0"><img src="images/1.jpg" alt="갤러리 사진 1"></div>
-                    <div class="gallery-grid-item" data-index="1"><img src="images/2.jpg" alt="갤러리 사진 2"></div>
-                    <div class="gallery-grid-item" data-index="2"><img src="images/3.jpg" alt="갤러리 사진 3"></div>
-                    <div class="gallery-grid-item" data-index="3"><img src="images/4.jpg" alt="갤러리 사진 4"></div>
-                    <div class="gallery-grid-item" data-index="4"><img src="images/5.jpg" alt="갤러리 사진 5"></div>
-                    <div class="gallery-grid-item" data-index="5"><img src="images/6.jpg" alt="갤러리 사진 6"></div>
-                    <div class="gallery-grid-item" data-index="6"><img src="images/7.jpg" alt="갤러리 사진 7"></div>
-                    <div class="gallery-grid-item" data-index="7"><img src="images/8.jpg" alt="갤러리 사진 8"></div>
-                    <div class="gallery-grid-item" data-index="8"><img src="images/9.jpg" alt="갤러리 사진 9"></div>
-                    <div class="gallery-grid-item" data-index="9"><img src="images/10.jpg" alt="갤러리 사진 10"></div>
-                    <div class="gallery-grid-item" data-index="10"><img src="images/11.jpg" alt="갤러리 사진 11"></div>
-                    <div class="gallery-grid-item" data-index="11"><img src="images/12.jpg" alt="갤러리 사진 12"></div>
-                    <div class="gallery-grid-item" data-index="12"><img src="images/13.jpg" alt="갤러리 사진 13"></div>
-                    <div class="gallery-grid-item" data-index="13"><img src="images/14.jpg" alt="갤러리 사진 14"></div>
-                    <div class="gallery-grid-item" data-index="14"><img src="images/15.jpg" alt="갤러리 사진 15"></div>
-                    <div class="gallery-grid-item" data-index="15"><img src="images/16.jpg" alt="갤러리 사진 16"></div>
-                    <div class="gallery-grid-item" data-index="16"><img src="images/17.jpg" alt="갤러리 사진 17"></div>
-                    <div class="gallery-grid-item" data-index="17"><img src="images/18.jpg" alt="갤러리 사진 18"></div>
-                    <div class="gallery-grid-item" data-index="18"><img src="images/19.jpg" alt="갤러리 사진 19"></div>
-                    <div class="gallery-grid-item" data-index="19"><img src="images/20.jpg" alt="갤러리 사진 20"></div>
-                    <div class="gallery-grid-item" data-index="20"><img src="images/21.jpg" alt="갤러리 사진 21"></div>
-                    <div class="gallery-grid-item" data-index="21"><img src="images/22.jpg" alt="갤러리 사진 22"></div>
-                    <div class="gallery-grid-item" data-index="22"><img src="images/23.jpg" alt="갤러리 사진 23"></div>
-                    <div class="gallery-grid-item" data-index="23"><img src="images/24.jpg" alt="갤러리 사진 24"></div>
-                    <div class="gallery-grid-item" data-index="24"><img src="images/25.jpg" alt="갤러리 사진 25"></div>
-                    <div class="gallery-grid-item" data-index="25"><img src="images/26.jpg" alt="갤러리 사진 26"></div>
-                    <div class="gallery-grid-item" data-index="26"><img src="images/27.jpg" alt="갤러리 사진 27"></div>
-                    <div class="gallery-grid-item" data-index="27"><img src="images/28.jpg" alt="갤러리 사진 28"></div>
-                    <div class="gallery-grid-item" data-index="28"><img src="images/29.jpg" alt="갤러리 사진 29"></div>
-                    <div class="gallery-grid-item" data-index="29"><img src="images/30.jpg" alt="갤러리 사진 30"></div>
-                    <div class="gallery-grid-item" data-index="30"><img src="images/31.jpg" alt="갤러리 사진 31"></div>
-                    <div class="gallery-grid-item" data-index="31"><img src="images/32.jpg" alt="갤러리 사진 32"></div>
-                    <div class="gallery-grid-item" data-index="32"><img src="images/33.jpg" alt="갤러리 사진 33"></div>
-                    <div class="gallery-grid-item" data-index="33"><img src="images/34.jpg" alt="갤러리 사진 34"></div>
-                    <div class="gallery-grid-item" data-index="34"><img src="images/35.jpg" alt="갤러리 사진 35"></div>
-                    <div class="gallery-grid-item" data-index="35"><img src="images/36.jpg" alt="갤러리 사진 36"></div>
-                </div>
+            <div class="gallery-grid" id="gallery-grid-wrapper">
+                <div class="gallery-grid-item" data-index="0"><img src="images/1.jpg" alt="갤러리 사진 1"></div>
+                <div class="gallery-grid-item" data-index="1"><img src="images/2.jpg" alt="갤러리 사진 2"></div>
+                <div class="gallery-grid-item" data-index="2"><img src="images/3.jpg" alt="갤러리 사진 3"></div>
+                <div class="gallery-grid-item" data-index="3"><img src="images/4.jpg" alt="갤러리 사진 4"></div>
+                <div class="gallery-grid-item" data-index="4"><img src="images/5.jpg" alt="갤러리 사진 5"></div>
+                <div class="gallery-grid-item" data-index="5"><img src="images/6.jpg" alt="갤러리 사진 6"></div>
+                <div class="gallery-grid-item" data-index="6"><img src="images/7.jpg" alt="갤러리 사진 7"></div>
+                <div class="gallery-grid-item" data-index="7"><img src="images/8.jpg" alt="갤러리 사진 8"></div>
+                <div class="gallery-grid-item" data-index="8"><img src="images/9.jpg" alt="갤러리 사진 9"></div>
+                <div class="gallery-grid-item" data-index="9"><img src="images/10.jpg" alt="갤러리 사진 10"></div>
+                <div class="gallery-grid-item" data-index="10"><img src="images/11.jpg" alt="갤러리 사진 11"></div>
+                <div class="gallery-grid-item" data-index="11"><img src="images/12.jpg" alt="갤러리 사진 12"></div>
+                <div class="gallery-grid-item" data-index="12"><img src="images/13.jpg" alt="갤러리 사진 13"></div>
+                <div class="gallery-grid-item" data-index="13"><img src="images/14.jpg" alt="갤러리 사진 14"></div>
+                <div class="gallery-grid-item" data-index="14"><img src="images/15.jpg" alt="갤러리 사진 15"></div>
+                <div class="gallery-grid-item" data-index="15"><img src="images/16.jpg" alt="갤러리 사진 16"></div>
+                <div class="gallery-grid-item" data-index="16"><img src="images/17.jpg" alt="갤러리 사진 17"></div>
+                <div class="gallery-grid-item" data-index="17"><img src="images/18.jpg" alt="갤러리 사진 18"></div>
+                <div class="gallery-grid-item" data-index="18"><img src="images/19.jpg" alt="갤러리 사진 19"></div>
+                <div class="gallery-grid-item" data-index="19"><img src="images/20.jpg" alt="갤러리 사진 20"></div>
+                <div class="gallery-grid-item" data-index="20"><img src="images/21.jpg" alt="갤러리 사진 21"></div>
+                <div class="gallery-grid-item" data-index="21"><img src="images/22.jpg" alt="갤러리 사진 22"></div>
+                <div class="gallery-grid-item" data-index="22"><img src="images/23.jpg" alt="갤러리 사진 23"></div>
+                <div class="gallery-grid-item" data-index="23"><img src="images/24.jpg" alt="갤러리 사진 24"></div>
+                <div class="gallery-grid-item" data-index="24"><img src="images/25.jpg" alt="갤러리 사진 25"></div>
+                <div class="gallery-grid-item" data-index="25"><img src="images/26.jpg" alt="갤러리 사진 26"></div>
+                <div class="gallery-grid-item" data-index="26"><img src="images/27.jpg" alt="갤러리 사진 27"></div>
+                <div class="gallery-grid-item" data-index="27"><img src="images/28.jpg" alt="갤러리 사진 28"></div>
+                <div class="gallery-grid-item" data-index="28"><img src="images/29.jpg" alt="갤러리 사진 29"></div>
+                <div class="gallery-grid-item" data-index="29"><img src="images/30.jpg" alt="갤러리 사진 30"></div>
+                <div class="gallery-grid-item" data-index="30"><img src="images/31.jpg" alt="갤러리 사진 31"></div>
+                <div class="gallery-grid-item" data-index="31"><img src="images/32.jpg" alt="갤러리 사진 32"></div>
+                <div class="gallery-grid-item" data-index="32"><img src="images/33.jpg" alt="갤러리 사진 33"></div>
+                <div class="gallery-grid-item" data-index="33"><img src="images/34.jpg" alt="갤러리 사진 34"></div>
+                <div class="gallery-grid-item" data-index="34"><img src="images/35.jpg" alt="갤러리 사진 35"></div>
+                <div class="gallery-grid-item" data-index="35"><img src="images/36.jpg" alt="갤러리 사진 36"></div>
+            </div>
         </section>
 
         <div id="gallery-modal" class="gallery-modal">
@@ -463,25 +518,6 @@
                 </div>
             </div>
         </div>
-
-
-        <section id="location" class="content-section">
-            <h2 class="title">
-                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
-                Location
-                <span class="css-seashell"><span class="part part-1"></span><span class="part part-2"></span><span class="part part-3"></span><span class="part part-4"></span><span class="part part-5"></span><span class="base"></span></span>
-            </h2>
-            <p>
-                <strong>2025년 8월 31일 일요일 낮 12시</strong><br>
-                롯데호텔 월드(잠실) 사파이어볼룸
-            </p>
-            <div class="map-container">
-                <div id="daumRoughmapContainer1750824419386" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-            </div>
-            <div class="btn-group">
-                <a href="https://kko.to/O9dESsYlA1" target="_blank" class="btn">카카오맵 바로가기</a>
-            </div>
-        </section>
 
         <section id="contact" class="content-section">
             <h2 class="title">
@@ -599,34 +635,33 @@
             bubbleWrapper.addEventListener('click', fadeOutIntro);
         }
 
-        // 타이핑 효과
-        const typingTextElement = document.getElementById('typing-text');
-        const cursorElement = document.querySelector('.cursor');
-        const lines = ["Welcome", "to our", "Wedding"];
-        const typeSpeed = 50;
-        let lineIndex = 0;
-        let charIndex = 0;
+        const linesToAnimate = document.querySelectorAll(".fade-in-text .line");
+        let totalDelay = 0.01; // 전체 애니메이션 시작 지연 시간 (0.5초)
+        const delayIncrement = 0.02; // 각 글자 사이의 지연 시간 (0.08초)
 
-        function type() {
-            if (lineIndex >= lines.length) {
-                // --- 수정: 타이핑 완료 후 커서 숨기는 코드 제거 ---
-                // cursorElement.style.display = 'none';
-                return;
-            }
-            if (charIndex < lines[lineIndex].length) {
-                typingTextElement.innerHTML += lines[lineIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, typeSpeed);
-            } else {
-                if (lineIndex < lines.length - 1) {
-                    typingTextElement.innerHTML += '<br>';
+        linesToAnimate.forEach(line => {
+            const text = line.textContent;
+            const chars = text.split(''); // 텍스트를 한 글자씩 쪼개 배열로 만듦
+
+            line.innerHTML = ''; // 기존 텍스트("Welcome" 등)를 지웁니다.
+
+            chars.forEach(char => {
+                const span = document.createElement('span');
+                if (char === ' ') {
+                    span.innerHTML = '&nbsp;'; // 공백일 경우, 줄바꿈 안되는 공백으로 처리
+                } else {
+                    span.textContent = char; // 일반 글자는 그대로
                 }
-                lineIndex++;
-                charIndex = 0;
-                setTimeout(type, typeSpeed * 10);
-            }
-        }
-        type();
+                // 각 글자에 순차적으로 animation-delay 적용
+                span.style.animationDelay = `${totalDelay}s`;
+                line.appendChild(span);
+                totalDelay += delayIncrement; // 다음 글자를 위해 지연 시간 증가
+            });
+
+            // 줄바꿈 후에는 잠시 더 쉬도록 딜레이를 추가합니다.
+            totalDelay += 0.05;
+        });
+
 
         const galleryGridWrapper = document.getElementById('gallery-grid-wrapper');
         const galleryModal = document.getElementById('gallery-modal');
@@ -650,6 +685,8 @@
             // 페이지 로드 시점에 첫 번째 슬라이드로 미리 이동시켜 둡니다.
             initialSlide: 0,
         });
+
+
 
 
 // 2. 그리드 아이템 클릭 시 모달 열기
