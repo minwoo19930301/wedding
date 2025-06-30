@@ -38,6 +38,33 @@
             background: linear-gradient(180deg, #e0f7fa 0%, #b2ebf2 100%);
         }
 
+        body {
+            font-size: clamp(15px, 2.5vw, 16px);
+        }
+
+        /* 각 섹션의 제목 (Invitation, Our Moments 등) */
+        .title {
+            font-size: clamp(2.2rem, 7vw, 2.8rem);
+        }
+
+        /* 초대글의 신랑/신부 이름 */
+        .names {
+            font-size: clamp(1rem, 3vw, 1.1rem);
+        }
+        .names strong {
+            font-size: 1.1em; /* 부모 크기에 비례해서 커지도록 설정 */
+        }
+
+        /* 마음 전하기의 계좌 정보 제목 */
+        #contact .account-info h4 {
+            font-size: clamp(1.1rem, 3.5vw, 1.2rem);
+        }
+
+        /* 맨 아래쪽 푸터(바닥글) */
+        footer {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
         .container {
             max-width: 600px; margin: 0 auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -114,7 +141,7 @@
             position: absolute;
             bottom: -30px;
             border-radius: 50%;
-            opacity: 10;
+            opacity: 5;
             border: 2.5px solid transparent;
             animation: rise 6s infinite ease-in;
 
@@ -167,7 +194,7 @@
 
         /* --- 메인 (이하 기존과 동일) --- */
         #hero { height: 75vh; position: relative; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding-top: 60px; }
-        #hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.95); }
+        #hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.95);}
         #hero-title-area { position: relative; z-index: 2; text-align: center; }
         #hero-title-area h1, #hero-title-area p { font-family: 'DarrelAllura', cursive; color: var(--sea-deep-blue); text-shadow: 0 1px 3px rgba(255,255,255,0.7); white-space: nowrap; }
         #hero-title-area h1 { font-size: clamp(2.8rem, 12vw, 4.5rem); font-weight: normal; }
@@ -241,7 +268,7 @@
         }
 
         /* 2. 클릭 시 나타날 전체 화면 모달 스타일 */
-        /* 모달 배경: 예시처럼 검은색으로 변경 */
+        /* 모달 배경 */
         .gallery-modal {
             position: fixed;
             top: 0;
@@ -250,58 +277,46 @@
             height: 100%;
             background-color: #000;
             z-index: 1001;
-            display: none;
+
+            /* ▼▼▼ 숨기는 방식을 display:none 대신 아래와 같이 변경합니다 ▼▼▼ */
+            display: flex; /* 레이아웃 유지를 위해 항상 flex로 설정 */
             justify-content: center;
             align-items: center;
+            visibility: hidden; /* 실제로 숨기고 보이는 것을 제어 */
+            opacity: 0; /* 투명도를 0으로 만들어 보이지 않게 함 */
+            transition: opacity 0.3s ease, visibility 0.3s ease; /* 부드러운 효과 */
+
+            cursor: pointer;
         }
         .gallery-modal.active {
-            display: flex;
+            /* ▼▼▼ 활성화되면 보이도록 변경 ▼▼▼ */
+            visibility: visible;
+            opacity: 1;
         }
 
-        /* 모달 내부 Swiper: 위아래 여백 추가 (예제와 동일) */
+        /* 모달 내부 Swiper */
         .modal-swiper {
             width: 100%;
             padding-top: 50px;
             padding-bottom: 50px;
         }
 
-        /* 슬라이드 크기: 예제와 100% 동일하게 300x300 픽셀 정사각형으로 설정 */
+        /* 슬라이드 스타일 */
         .modal-swiper .swiper-slide {
-            background-position: center;
-            background-size: cover;
-            width: 300px;
-            height: 300px;
+            width: 80vw; /* 최대 너비를 화면 너비의 80%로 제한 (필요에 따라 조절) */
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* 슬라이드 내부 이미지 스타일 */
+        /* 슬라이드 내부 이미지 스타일: 가로를 꽉 채우고 세로는 비율에 맞춰 자동 조절 */
         .modal-swiper .swiper-slide img {
             display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* 모달 닫기 버튼 스타일 */
-        .gallery-modal-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 3rem;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 1002;
-        }
-
-        /* Swiper UI(버튼, 페이지) 색상 */
-        .modal-swiper .swiper-button-next,
-        .modal-swiper .swiper-button-prev {
-            color: white;
-            --swiper-navigation-size: 30px;
-        }
-        .modal-swiper .swiper-pagination-bullet-active {
-            background-color: white;
+            width: 100%; /* 슬라이드 너비에 꽉 채움 */
+            height: auto; /* 원래 비율에 맞춰 자동 조절 */
+            max-height: 90vh; /* 최대 높이를 화면 높이의 90%로 제한 (너무 길어지는 것 방지) */
+            pointer-events: none;
         }
 
     </style>
@@ -446,10 +461,7 @@
                     <div class="swiper-slide"><img src="images/35.jpg" /></div>
                     <div class="swiper-slide"><img src="images/36.jpg" /></div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
             </div>
-            <button type="button" class="gallery-modal-close">&times;</button>
         </div>
 
 
@@ -535,14 +547,14 @@
         // 2. 6초 후에 신호등을 '멈춤'으로 변경
         setTimeout(function() {
             stopBubbleGeneration = true;
-        }, 6000); // 6000밀리초 = 6초
+        }, 7000); // 6000밀리초 = 6초
 
         for (let i = 0; i < bubbleCount; i++) {
             const bubble = document.createElement('div');
             bubble.className = 'bubble';
             bubble.style.left = `${Math.random() * 98}%`;
             bubble.style.animationDuration = `${4 + Math.random() * 8}s`; // 지속시간은 자유롭게 조정
-            bubble.style.animationDelay = `${Math.random() * 5}s`; // 시작 시간을 조금씩 다르게 하여 자연스럽게
+            bubble.style.animationDelay = `${Math.random() * 1}s`; // 시작 시간을 조금씩 다르게 하여 자연스럽게
             const size = `${10 + Math.random() * 20}px`;
             bubble.style.width = size;
             bubble.style.height = size;
@@ -623,7 +635,7 @@
 
 // 1. 모달 Swiper 초기화 (페이지 로드 시 한 번만)
         modalSwiper = new Swiper(".modal-swiper", {
-            effect: "coverflow", // ★★★ Coverflow 효과를 다시 적용합니다 ★★★
+            effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: "auto",
@@ -635,27 +647,30 @@
                 modifier: 1,
                 slideShadows: true,
             },
-            pagination: { // 페이지 번호 UI도 예제와 같이 다시 포함합니다
-                el: ".swiper-pagination",
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
+            // 페이지 로드 시점에 첫 번째 슬라이드로 미리 이동시켜 둡니다.
+            initialSlide: 0,
         });
+
 
 // 2. 그리드 아이템 클릭 시 모달 열기
         galleryGridWrapper.addEventListener('click', function(e) {
             const clickedItem = e.target.closest('.gallery-grid-item');
             if (clickedItem) {
                 const clickedIndex = parseInt(clickedItem.dataset.index, 10);
-                galleryModal.classList.add('active');
+
+                // 클릭한 슬라이드로 즉시 이동시킵니다.
                 modalSwiper.slideToLoop(clickedIndex, 0);
+
+                // .active 클래스를 추가하여 모달을 보이게 합니다.
+                galleryModal.classList.add('active');
+
+                // update는 더 이상 필수가 아니지만, 만일을 위해 유지합니다.
+                modalSwiper.update();
             }
         });
 
 // 3. 모달 닫기 버튼 클릭 시 모달 닫기
-        closeModalBtn.addEventListener('click', function() {
+        galleryModal.addEventListener('click', function() {
             galleryModal.classList.remove('active');
         });
 
