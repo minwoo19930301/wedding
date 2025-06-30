@@ -392,13 +392,15 @@
 
         /* 텍스트 각 한 줄에 대한 스타일 (이제 애니메이션 없음) */
         .fade-in-text .line {
-            /* 이 요소는 이제 글자들을 담는 역할만 합니다. */
-            /* 줄바꿈을 위해 비워둡니다. */
+            /* 1. 초기 텍스트를 투명하게 만들어 숨깁니다 */
+            color: transparent;
         }
 
         /* ★ 새로 추가: JavaScript로 생성될 한 글자(span)에 대한 스타일 */
         .fade-in-text .line span {
             opacity: 0; /* 시작 전에는 투명 */
+            /* 2. JS로 생성된 span 태그의 글자색은 다시 흰색으로 되돌립니다 */
+            color: #fff;
             display: inline-block; /* 한 글자씩 공간을 차지하도록 */
             animation: fadeIn-inplace 0.8s ease-out forwards; /* '제자리' fadeIn 애니메이션 적용 */
         }
@@ -656,10 +658,37 @@
         }
 
         footer {
-            padding: 50px 20px;
+            padding: 80px 30px;
             text-align: center;
-            background-color: var(--sea-deep-blue);
-            color: #fff;
+            color: #fff; /* 글자색은 흰색으로 유지 */
+            position: relative; /* z-index 적용을 위해 추가 */
+            overflow: hidden; /* 이미지가 튀어나가지 않도록 */
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            /* ★★★ 여기에 올바른 이미지 경로를 입력하세요 ★★★ */
+            background-image: url('images/banner.png');
+            background-size: cover;
+            background-position: center;
+
+            /* 투명도 조절 (0.5는 50% 투명, 값을 조절하여 원하는 밝기로) */
+            opacity: 0.7;
+
+            z-index: -1; /* 글씨보다 뒤에 위치하도록 설정 */
+        }
+
+        footer p {
+            font-size: 1.1rem; /* 글씨 크기 (원하는 대로 조절) */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* 검은색 그림자 (가로, 세로, 흐림, 색상) */
+            position: relative; /* 그라데이션보다 위에 텍스트가 오도록 */
+            z-index: 1;
         }
 
         .gallery-grid {
@@ -774,7 +803,7 @@
     <div class="content-wrapper">
         <section id="hero">
             <img id="hero-background"
-                 src="images/0.jpg"
+                 src="images/1.jpg"
                  alt="결혼식 메인 사진">
         </section>
 
@@ -895,7 +924,7 @@
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
             <div class="gallery-grid" id="gallery-grid-wrapper">
-                <div class="gallery-grid-item" data-index="0"><img src="images/1.jpg" alt="갤러리 사진 1"></div>
+                <div class="gallery-grid-item" data-index="0"><img src="images/0.jpg" alt="갤러리 사진 1"></div>
                 <div class="gallery-grid-item" data-index="1"><img src="images/2.jpg" alt="갤러리 사진 2"></div>
                 <div class="gallery-grid-item" data-index="2"><img src="images/3.jpg" alt="갤러리 사진 3"></div>
                 <div class="gallery-grid-item" data-index="3"><img src="images/4.jpg" alt="갤러리 사진 4"></div>
@@ -1024,7 +1053,7 @@
 <div id="gallery-modal" class="gallery-modal">
     <div class="swiper modal-swiper">
         <div class="swiper-wrapper" id="modal-swiper-wrapper">
-            <div class="swiper-slide"><img src="images/1.jpg"/></div>
+            <div class="swiper-slide"><img src="images/0.jpg"/></div>
             <div class="swiper-slide"><img src="images/2.jpg"/></div>
             <div class="swiper-slide"><img src="images/3.jpg"/></div>
             <div class="swiper-slide"><img src="images/4.jpg"/></div>
