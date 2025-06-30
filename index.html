@@ -471,7 +471,9 @@
             vertical-align: middle; /* 텍스트와 세로 중앙 정렬 */
             margin: 0 8px; /* 텍스트와의 좌우 여백 */
             transform: translateY(-3px); /* 세로 위치 미세 조정 */
+            filter: saturate(88%)  brightness(156%) contrast(100%) hue-rotate(360deg);
         }
+
 
         #invitation p,
         #invitation .names,
@@ -591,14 +593,14 @@
         #contact .account-info h4 {
             color: var(--sea-deep-blue);
             font-size: 1.2rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px; /* 제목과 첫 계좌 사이 간격 조정 */
         }
 
         .account-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 20px; /* 계좌 정보 간 간격 조정 */
         }
 
         .account-row:last-child {
@@ -607,6 +609,31 @@
 
         .account-row span {
             line-height: 1.6;
+            word-break: keep-all; /* 이름과 계좌번호가 같이 내려가도록 */
+        }
+
+        .btn-group-account {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* 버튼 사이 간격 */
+            flex-shrink: 0; /* 버튼이 작아지지 않도록 설정 */
+        }
+
+        .send-btn {
+            padding: 8px 15px;
+            border: 1px solid var(--coral-pink);
+            background-color: var(--coral-pink);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none; /* a 태그의 밑줄 제거 */
+            font-size: 1em; /* 다른 버튼과 폰트 크기 통일 */
+            white-space: nowrap; /* '송금하기' 글자 줄바꿈 방지 */
+        }
+
+        .send-btn:hover {
+            opacity: 0.8;
         }
 
         .copy-btn {
@@ -617,6 +644,8 @@
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 1em; /* 다른 버튼과 폰트 크기 통일 */
+            white-space: nowrap; /* '복사' 글자 줄바꿈 방지 */
         }
 
         .copy-btn:hover {
@@ -756,9 +785,9 @@
         </section>
         <section id="invitation" class="content-section">
             <h2 class="title">
-                <img src="/icons/shell.png" alt="조개 아이콘" class="title-icon">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
                 Invitation
-                <img src="/icons/shell.png" alt="조개 아이콘" class="title-icon">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
             <p>
                 2019년 6월,<br>
@@ -779,34 +808,34 @@
                 한없이 감사하는 마음으로 간직하겠습니다.
             </p>
             <div class="names">
-                김현수 · 윤혜영의 장남   <strong>김민우</strong><br>
-                김응빈 · 임성미의 장녀   <strong>김채은</strong>
+                김현수 · 윤혜영의 장남   <strong>김 민 우</strong><br>
+                김응빈 · 임성미의 장녀   <strong>김 채 은</strong>
             </div>
         </section>
 
         <section id="notice" class="content-section">
             <h2 class="title">
-                <img src="/icons/shell.png" alt="조개 아이콘" class="title-icon">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
                 Notice
-                <img src="/icons/shell.png" alt="조개 아이콘" class="title-icon">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
-            <div style="text-align: center; line-height: 1.9; font-size: 0.95em; background-color: #f9f9f9; padding: 25px; border-radius: 12px; border: 1px solid #eee;">
+            <div style="text-align: center; line-height: 1.9; font-size: 0.95em; background-color: #f9f9f9; padding: 25px; border-radius: 12px; border: 1px solid #bdb4b4;">
                 <p style="font-weight: bold; font-size: 1.1em; color: var(--coral-pink); margin-bottom: 15px;">참석 여부를 미리
                     알려주세요</p>
                 <p>
-                    한정된 좌석과 동시예식으로 진행되는<br>
-                    코스 요리 준비를 위해<br>
+                    코스 요리가 제공되는 동시예식 특성상<br>
+                    제한된 좌석 수에 맞게 식사가 대접됩니다.<br>
                     참석이 가능하신 분들께서는<br>
-                    <strong>신랑 측 또는 신부 측에게 미리 연락</strong> 주시면<br>
+                    신랑 측 또는 신부 측에게 미리 연락 주시면<br>
                     더욱 정성껏 준비하여 모시겠습니다.
                 </p>
                 <br>
                 <p>
-                    부득이하게 사전에 연락을 주지 못하셨거나<br>
-                    자리가 부족할 경우, 서서 예식을 보시게 될 수 있으며<br>
-                    식사 대신 정성껏 준비한 답례품으로<br>
+                    사전에 연락을 주지 못하셨거나 자리가 부족할 경우, <br>
+                    서서 예식을 보시게 될 수 있으며<br>
+                    식사 대신 주변에서 식사가 가능한 답례품으로<br>
                     감사한 마음을 전해드리는 점<br>
-                    너른 양해 부탁드립니다.
+                    너그러운 양해 부탁드립니다.
                 </p>
             </div>
         </section>
@@ -814,9 +843,9 @@
 
         <section id="location" class="content-section">
             <h2 class="title">
-                <img src="/icons/shell.png" alt="조개 아이콘" class="title-icon">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
                 Location
-                <img src="/icons/shell.png" alt="조개 아이콘" class="title-icon">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
             <p>
                 <strong>2025년 8월 31일 일요일 낮 12시</strong><br>
@@ -845,7 +874,7 @@
 
                 <p style="margin-top: 20px; margin-bottom: 10px;"><strong>[대중교통 안내]</strong></p>
                 <ul style="list-style-position: inside; padding-left: 5px;">
-                    <li><strong>기차 (수서역 기준):</strong> 수서역 2번 출구 앞 정류장에서 <strong>2412번 버스</strong> 탑승 후 잠실역 하차</li>
+                    <li><strong>기차 (수서역 기준):</strong> 수서역 2번 출구 앞 정류장에서 <strong>2412번 버스</strong> 탑승 후 잠실역 하차 후 월드타워 건너편인 호텔로 이동</li>
                     <li><strong>고속버스 (고속버스터미널 기준):</strong> 고속터미널역에서 3호선 타고 교대역 환승 후 2호선 잠실역 하차</li>
                     <li><strong>지하철:</strong> 2호선 잠실역 3번 출구에서 나와서 도보 5분<br>(지하철 직통연결통로 이용 시 롯데백화점 분수대와 롯데리아 사이 복도 통과 후
                         계단 이용)
@@ -856,9 +885,9 @@
 
         <section id="gallery" class="content-section">
             <h2 class="title">
-                <img src="/icons/shell.png" alt="조개 아이콘" class="title-icon">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
                 Gallery
-                <img src="/icons/shell.png" alt="조개 아이콘" class="title-icon">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
             <div class="gallery-grid" id="gallery-grid-wrapper">
                 <div class="gallery-grid-item" data-index="0"><img src="images/1.jpg" alt="갤러리 사진 1"></div>
@@ -939,17 +968,34 @@
 
         <section id="contact" class="content-section">
             <h2 class="title">
-                <img src="/icons/shell.png" alt="조개 아이콘" class="title-icon">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
                 Accounts
-                <img src="/icons/shell.png" alt="조개 아이콘" class="title-icon">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
-            <p>참석이 어려우신 분들을 위해<br>계좌번호를 기재하였습니다.<br>따뜻한 마음 감사히 간직하겠습니다.</p>
+            <p style="text-align: center; line-height: 1.8;">참석이 어려우신 분들을 위해<br>계좌번호를 기재하였습니다.<br>따뜻한 마음 감사히 간직하겠습니다.</p>
 
             <div class="account-info">
                 <h4>신랑측 계좌</h4>
                 <div class="account-row">
                     <span><strong>신랑 김민우</strong><br>땡땡은행 123-456-789012</span>
-                    <button class="copy-btn" data-clipboard-text="123456789012">복사</button>
+                    <div class="btn-group-account">
+                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
+                        <button class="copy-btn" data-clipboard-text="123456789012">복사</button>
+                    </div>
+                </div>
+                <div class="account-row">
+                    <span><strong>아버지 김현수</strong><br>은행명 111-222-333333</span>
+                    <div class="btn-group-account">
+                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
+                        <button class="copy-btn" data-clipboard-text="111222333333">복사</button>
+                    </div>
+                </div>
+                <div class="account-row">
+                    <span><strong>어머니 윤혜영</strong><br>은행명 444-555-666666</span>
+                    <div class="btn-group-account">
+                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
+                        <button class="copy-btn" data-clipboard-text="444555666666">복사</button>
+                    </div>
                 </div>
             </div>
 
@@ -957,7 +1003,24 @@
                 <h4>신부측 계좌</h4>
                 <div class="account-row">
                     <span><strong>신부 김채은</strong><br>꾹꾹은행 987-654-321098</span>
-                    <button class="copy-btn" data-clipboard-text="987654321098">복사</button>
+                    <div class="btn-group-account">
+                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
+                        <button class="copy-btn" data-clipboard-text="987654321098">복사</button>
+                    </div>
+                </div>
+                <div class="account-row">
+                    <span><strong>아버지 김응빈</strong><br>은행명 777-888-999999</span>
+                    <div class="btn-group-account">
+                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
+                        <button class="copy-btn" data-clipboard-text="777888999999">복사</button>
+                    </div>
+                </div>
+                <div class="account-row">
+                    <span><strong>어머니 임성미</strong><br>은행명 123-123-456789</span>
+                    <div class="btn-group-account">
+                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
+                        <button class="copy-btn" data-clipboard-text="123123456789">복사</button>
+                    </div>
                 </div>
             </div>
         </section>
