@@ -548,8 +548,7 @@
         .swiper-slide {
             background-position: center;
             background-size: cover;
-            width: 65%;
-            max-width: 300px;
+            width: 75%;
             aspect-ratio: 3 / 4;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -562,10 +561,6 @@
             height: 100%;
             object-fit: cover;
             border-radius: 12px;
-        }
-
-        .swiper-pagination-bullet-active {
-            background-color: var(--coral-pink);
         }
 
         #lightbox {
@@ -741,12 +736,13 @@
         }
 
         /* 슬라이드 스타일 */
-        .modal-swiper .swiper-slide {
-            width: 80vw; /* 최대 너비를 화면 너비의 80%로 제한 (필요에 따라 조절) */
-            height: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .modal-swiper .swiper-slide img {
+            display: block;
+            width: 90%;
+            max-height: 100vh;
+            object-fit: cover; /* 이미지가 컨테이너를 덮도록 자르기 */
+            aspect-ratio: 3 / 4; /* 강제로 3:4 비율 유지 (세로 비율) */
+            pointer-events: none;
         }
 
         /* 슬라이드 내부 이미지 스타일: 가로를 꽉 채우고 세로는 비율에 맞춰 자동 조절 */
@@ -780,8 +776,9 @@
     <div id="intro-content">
         <div class="fade-in-text">
             <div class="line">Welcome</div>
+            <div> </div>
             <div class="line">to our</div>
-            <div class="line"> </div>
+            <div> </div>
             <div class="line">Wedding</div>
         </div>
     </div>
@@ -791,9 +788,8 @@
     <div class="content-wrapper">
         <section id="hero">
             <img id="hero-background"
-                 src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2Fb15g6R%2FbtsOOMfoXUM%2FAAAAAAAAAAAAAAAAAAAAAJzKKCh21N-Tgrx1nQnwkUIeFTrTbdh8aL1lS74NJIlz%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1751295599%26allow_ip%3D%26allow_referer%3D%26signature%3DC0y1c7akECYm9b77zB9YD%252Fs5WgE%253D"
+                 src="images/0.jpg"
                  alt="결혼식 메인 사진">
-
         </section>
 
         <section>
@@ -932,6 +928,7 @@
                 <div class="gallery-grid-item" data-index="8"><img src="images/9.jpg" alt="갤러리 사진 9"></div>
                 <div class="gallery-grid-item" data-index="9"><img src="images/10.jpg" alt="갤러리 사진 10"></div>
                 <div class="gallery-grid-item" data-index="10"><img src="images/11.jpg" alt="갤러리 사진 11"></div>
+                <div class="gallery-grid-item" data-index="11"><img src="images/12.jpg" alt="갤러리 사진 12"></div>
                 <div class="gallery-grid-item" data-index="12"><img src="images/13.jpg" alt="갤러리 사진 13"></div>
                 <div class="gallery-grid-item" data-index="13"><img src="images/14.jpg" alt="갤러리 사진 14"></div>
                 <div class="gallery-grid-item" data-index="14"><img src="images/15.jpg" alt="갤러리 사진 15"></div>
@@ -942,6 +939,7 @@
                 <div class="gallery-grid-item" data-index="19"><img src="images/20.jpg" alt="갤러리 사진 20"></div>
                 <div class="gallery-grid-item" data-index="20"><img src="images/21.jpg" alt="갤러리 사진 21"></div>
                 <div class="gallery-grid-item" data-index="21"><img src="images/22.jpg" alt="갤러리 사진 22"></div>
+                <div class="gallery-grid-item" data-index="22"><img src="images/23.jpg" alt="갤러리 사진 23"></div>
                 <div class="gallery-grid-item" data-index="23"><img src="images/24.jpg" alt="갤러리 사진 24"></div>
                 <div class="gallery-grid-item" data-index="24"><img src="images/25.jpg" alt="갤러리 사진 25"></div>
                 <div class="gallery-grid-item" data-index="25"><img src="images/26.jpg" alt="갤러리 사진 26"></div>
@@ -951,9 +949,7 @@
                 <div class="gallery-grid-item" data-index="29"><img src="images/30.jpg" alt="갤러리 사진 30"></div>
                 <div class="gallery-grid-item" data-index="30"><img src="images/31.jpg" alt="갤러리 사진 31"></div>
                 <div class="gallery-grid-item" data-index="31"><img src="images/32.jpg" alt="갤러리 사진 32"></div>
-                <div class="gallery-grid-item" data-index="33"><img src="images/34.jpg" alt="갤러리 사진 34"></div>
-                <div class="gallery-grid-item" data-index="34"><img src="images/35.jpg" alt="갤러리 사진 35"></div>
-                <div class="gallery-grid-item" data-index="35"><img src="images/36.jpg" alt="갤러리 사진 36"></div>
+                <div class="gallery-grid-item" data-index="32"><img src="images/33.jpg" alt="갤러리 사진 33"></div>
             </div>
         </section>
 
@@ -971,6 +967,7 @@
                     <div class="swiper-slide"><img src="images/9.jpg"/></div>
                     <div class="swiper-slide"><img src="images/10.jpg"/></div>
                     <div class="swiper-slide"><img src="images/11.jpg"/></div>
+                    <div class="swiper-slide"><img src="images/12.jpg"/></div>
                     <div class="swiper-slide"><img src="images/13.jpg"/></div>
                     <div class="swiper-slide"><img src="images/14.jpg"/></div>
                     <div class="swiper-slide"><img src="images/15.jpg"/></div>
@@ -981,6 +978,7 @@
                     <div class="swiper-slide"><img src="images/20.jpg"/></div>
                     <div class="swiper-slide"><img src="images/21.jpg"/></div>
                     <div class="swiper-slide"><img src="images/22.jpg"/></div>
+                    <div class="swiper-slide"><img src="images/23.jpg"/></div>
                     <div class="swiper-slide"><img src="images/24.jpg"/></div>
                     <div class="swiper-slide"><img src="images/25.jpg"/></div>
                     <div class="swiper-slide"><img src="images/26.jpg"/></div>
@@ -990,9 +988,7 @@
                     <div class="swiper-slide"><img src="images/30.jpg"/></div>
                     <div class="swiper-slide"><img src="images/31.jpg"/></div>
                     <div class="swiper-slide"><img src="images/32.jpg"/></div>
-                    <div class="swiper-slide"><img src="images/34.jpg"/></div>
-                    <div class="swiper-slide"><img src="images/35.jpg"/></div>
-                    <div class="swiper-slide"><img src="images/36.jpg"/></div>
+                    <div class="swiper-slide"><img src="images/33.jpg"/></div>
                 </div>
             </div>
         </div>
