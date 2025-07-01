@@ -588,6 +588,88 @@
             margin-right: 14px;
             font-weight: bold;
         }
+        /*--- 📅 캘린더 섹션 스타일 (통합형) 📅 ---*/
+        .calendar-container {
+            margin-top: 30px;
+            padding: 30px 25px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .calendar-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .calendar-header h3 {
+            /* 본문과 통일감 있는 명조체로 변경 */
+            font-family: 'BookkMyungjo-Bd', serif;
+            font-size: 1.6em;
+            color: var(--text-dark);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+
+        .day-name {
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #999;
+            padding-bottom: 10px;
+        }
+
+        .day {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 60px; /* 날짜 칸 높이 */
+            font-size: 1em;
+            border-radius: 50%; /* 동그랗게 변경 */
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        /* 9월 날짜는 연한 회색으로 표시 */
+        .day.other-month {
+            color: #ccc;
+        }
+
+        /* 토요일, 일요일 색상 */
+        .day-name.sun, .day.sun { color: #E74C3C; }
+        .day-name.sat, .day.sat { color: #3498DB; }
+        .day.sat.other-month { color: #a9d4ee; } /* 9월 토요일 색상 */
+
+
+        /* 웨딩데이 특별 스타일 */
+        .day.special-day {
+            background-color: var(--coral-pink);
+            color: white !important; /* 다른 색상 규칙보다 우선 적용 */
+            font-weight: 700;
+            transform: scale(1.05);
+            box-shadow: 3px 4px 12px rgba(241, 148, 138, 0.6);
+            width: 38px;
+            height: 42px;
+        }
+
+        .special-day .day-number {
+            font-size: 1.25em;
+            line-height: 1;
+        }
+
+        .special-day .day-label {
+            font-size: 0.6em;
+            margin-top: 4px;
+            opacity: 0.9;
+            font-weight: normal;
+        }
 
         /* 주차 아이콘 (P) */
         .parking-info h3::before {
@@ -1120,6 +1202,54 @@
             </div>
         </section>
 
+        <section id="calendar" class="content-section">
+            <h2 class="title">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
+                Calendar
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
+            </h2>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <h3>2025년 8월</h3>
+                </div>
+                <div class="calendar-grid">
+                    <div class="day-name sun">일</div>
+                    <div class="day-name">월</div>
+                    <div class="day-name">화</div>
+                    <div class="day-name">수</div>
+                    <div class="day-name">목</div>
+                    <div class="day-name">금</div>
+                    <div class="day-name sat">토</div>
+
+                    <div class="day sun">17</div>
+                    <div class="day">18</div>
+                    <div class="day">19</div>
+                    <div class="day">20</div>
+                    <div class="day">21</div>
+                    <div class="day">22</div>
+                    <div class="day sat">23</div>
+
+                    <div class="day sun">24</div>
+                    <div class="day">25</div>
+                    <div class="day">26</div>
+                    <div class="day">27</div>
+                    <div class="day">28</div>
+                    <div class="day">29</div>
+                    <div class="day sat">30</div>
+
+                    <div class="day sun special-day">
+                        <span class="day-number">31</span>
+                        <span class="day-label">예식일</span>
+                    </div>
+                    <div class="day other-month">1</div>
+                    <div class="day other-month">2</div>
+                    <div class="day other-month">3</div>
+                    <div class="day other-month">4</div>
+                    <div class="day other-month">5</div>
+                    <div class="day sat other-month">6</div>
+                </div>
+            </div>
+        </section>
 
         <section id="location" class="content-section">
             <h2 class="title">
