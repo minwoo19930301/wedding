@@ -3,19 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>민우와 채은이의 결혼식에 초대합니다</title>
+    <title>🤵민우와 채은이👰의 결혼식💍에 초대합니다💐🤍🎉</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <style>
         /* --- 폰트 정의 --- */
         @font-face {
             font-family: 'DarrelAllura';
-            src: url('font.ttf') format('truetype');
+            src: url('fonts/DarrelAllura.ttf') format('truetype');
         }
 
         @font-face {
             font-family: 'Aston';
-            src: url('font2.ttf') format('truetype');
+            src: url('fonts/Aston.ttf') format('truetype');
         }
+
+        @font-face {
+            font-family: 'Noracle';
+            src: url('fonts/Noracle.otf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Mermaid';
+            src: url('fonts/Mermaid.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Hello Bride Script';
+            src: url('fonts/Hello Bride Script.ttf') format('truetype');
+        }
+
 
         @font-face {
             font-family: 'BookkMyungjo-Bd';
@@ -24,8 +41,7 @@
             font-style: normal;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-        @import url("https://fonts.googleapis.com/css2?family=Asap&display=swap");
+
 
         :root {
             --sea-deep-blue: #015871;
@@ -42,7 +58,7 @@
         body {
             font-family: 'BookkMyungjo-Bd', sans-serif;
             color: var(--text-dark);
-            background: linear-gradient(180deg, #e0f7fa 0%, #b2ebf2 100%);
+            background: linear-gradient(180deg, #e0f7fa 0%, #b2bbf2 100%);
         }
 
         body {
@@ -84,7 +100,7 @@
         .content-wrapper {
             position: relative;
             z-index: 2;
-            background-color: rgba(255, 255, 255, 0.9);
+            background: linear-gradient(180deg, #f0f8ff 0%, rgb(227, 248, 255) 100%);
         }
 
         /* --- 인트로 --- */
@@ -148,7 +164,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-image: url("https://images.unsplash.com/photo-1518837695005-2083093ee35b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTEyMTIwOTZ8&ixlib=rb-4.0.3&q=80&w=400");
+            background-image: url("images/wave.jpeg");
             background-repeat: repeat-x;
             --duration: 8s;
             --lowHeight: 30vh;
@@ -188,7 +204,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-image: url("https://images.unsplash.com/photo-1568145675395-66a2eda0c6d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTEyMTAwNjh8&ixlib=rb-4.0.3&q=80&w=400");
+            background-image: url("images/surface.jpeg");
             background-repeat: repeat;
             --duration: 10s;
             --gapY: 0px;
@@ -377,14 +393,14 @@
             line-height: 1.3;
             color: #fff;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            font-family: 'Aston', cursive;
-            font-size: 3.8rem;
+            font-family: 'Hello Bride Script', cursive;
+            font-size: 6.8rem;
 
         }
 
         .fade-in-text {
-            font-family: 'Aston', cursive;
-            font-size: clamp(3rem, 10vw, 4rem);
+            font-family: 'Hello Bride Script', cursive;
+            font-size: clamp(5rem, 15vw, 40rem);
             line-height: 1.3;
             color: #fff;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -436,6 +452,19 @@
             /* 사진과 제목 사이에 적절한 간격을 줍니다. */
         }
 
+        #hero-title-area .location {
+            font-family: 'Noracle', sans-serif; /* Mermaid 폰트 적용 */
+            font-size: 2em; /* 이름과 날짜 사이의 적절한 크기로 조절 */
+            margin: 20px 0; /* 위아래 여백 추가 */
+            color: var(--sea-deep-blue);
+            font-weight: 600;
+        }
+
+        #hero-title-area .small-text {
+            font-size: 0.8em; /* 작은 글씨 크기 조절 */
+            font-weight: 10;
+        }
+
         #hero-title-area h1, #hero-title-area p {
             font-family: 'DarrelAllura', cursive;
             color: var(--sea-deep-blue);
@@ -451,6 +480,29 @@
         #hero-title-area p {
             font-size: clamp(1.5rem, 6vw, 2rem);
             margin-top: 0.5rem;
+        }
+
+        .invitation-text-wrapper {
+            position: relative;
+            padding: 40px 20px;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            border-top: 2px solid rgba(241, 148, 138, 0.3); /* 상단에 연한 코랄색 포인트 */
+            border-bottom: 2px solid rgba(241, 148, 138, 0.3); /* 하단에 연한 코랄색 포인트 */
+        }
+
+        /* 텍스트와 이름 사이의 장식 구분선 */
+        .divider {
+            width: 140px;
+            height: 2px;
+            background-color: rgba(241, 148, 138, 0.4); /* 연한 코랄색 */
+            margin: 40px auto;
+        }
+
+        /* 기존 names 스타일과 조화롭게 여백 조정 */
+        #invitation .names {
+            margin-top: 10px; /* divider와 여백이 있으므로 상단 마진 제거 */
         }
 
         .content-section {
@@ -494,6 +546,104 @@
         .names strong {
             font-size: 1.2rem;
             font-weight: 700;
+        }
+
+        /*--- 🎨 오시는 길 안내 (고급형) 🎨 ---*/
+        .guidance-container {
+            margin-top: 50px; /* 버튼과의 여백 */
+            text-align: left;
+        }
+
+        .guidance-section {
+            background-color: rgba(248, 250, 252, 0.7); /* 살짝 비치는 하얀 배경 */
+            border: 1px solid #e8e8e8;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+            backdrop-filter: blur(5px); /* 배경 블러 효과 (지원 브라우저) */
+        }
+
+        .guidance-section h3 {
+            font-size: 1.25em;
+            color: var(--sea-deep-blue);
+            margin: -30px -30px 25px -30px; /* 제목을 카드 상단에 붙이기 */
+            padding: 20px 30px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid #e8e8e8;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 아이콘 스타일 */
+        .guidance-section h3::before {
+            font-family: 'Aston', cursive;
+            font-size: 1.2em;
+            color: var(--coral-pink);
+            margin-right: 14px;
+            font-weight: bold;
+        }
+
+        /* 주차 아이콘 (P) */
+        .parking-info h3::before {
+            content: 'Park';
+        }
+
+        /* 대중교통 아이콘 (T) */
+        .transport-info h3::before {
+            content: 'Trans';
+        }
+
+        .guidance-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .guidance-section li {
+            padding-left: 22px;
+            position: relative;
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+
+        .guidance-section li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 커스텀 목록 아이콘 (작은 점) */
+        .guidance-section li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.4em;
+            color: var(--coral-pink);
+            line-height: 1;
+        }
+
+        /* 대중교통 안내 세부 내용 */
+        .guidance-section li p {
+            margin: 5px 0 0 0;
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        /* 강조 텍스트 스타일 */
+        .guidance-section .highlight {
+            color: #3154f6;
+            font-weight: 700;
+        }
+        .guidance-section .highlight-alt {
+            color: #008080; /* Teal */
+            font-weight: 700;
+        }
+
+        /* 주의사항 텍스트 */
+        .guidance-section .notice-text {
+            color: #E74C3C;
+            font-weight: 700;
+            margin-top: 15px;
         }
 
         #gallery {
@@ -768,6 +918,56 @@
             max-height: 90vh; /* 최대 높이를 화면 높이의 90%로 제한 (너무 길어지는 것 방지) */
             pointer-events: none;
         }
+        /*---  আধুনিক হিসাবের তথ্য 아이콘 버튼 스타일 ---*/
+        .btn-group-modern {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* 아이콘 사이 간격 */
+            flex-shrink: 0;
+        }
+
+        .icon-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;   /* 아이콘 원 크기 */
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            color: #888;
+            font-size: 0.95em; /* 아이콘 크기 */
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .icon-btn-modern:hover {
+            background-color: #f5f5f5;
+            border-color: #aaa;
+            color: #333;
+            transform: scale(1.1);
+        }
+        /*--- 아이콘 설명 스타일 ---*/
+        .icon-guide {
+            text-align: center;
+            margin: 25px 0 10px 0;
+            padding: 12px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 0.85em;
+            color: #555;
+        }
+
+        .icon-guide span {
+            margin: 0 10px;
+        }
+
+        .icon-guide i {
+            margin-right: 5px;
+            color: #999;
+        }
 
     </style>
 
@@ -791,9 +991,7 @@
     <div id="intro-content">
         <div class="fade-in-text">
             <div class="line">Welcome</div>
-            <div> </div>
             <div class="line">to our</div>
-            <div> </div>
             <div class="line">Wedding</div>
         </div>
     </div>
@@ -809,9 +1007,14 @@
 
         <section>
             <div id="hero-title-area">
-                <h1>Minwoo + Chaeeun</h1>
-                <p>2025. 08. 31. 12:00</p>
-
+                <h1 style="font-weight: 500;">Minwoo + Chaeeun</h1>
+                <br>
+                <div class="location">
+                    <span>LOTTE HOTEL WORLD</span><br>
+                    <span class="small-text">Sapphire Ballroom</span>
+                    <br>
+                    <span class="small-text">2025. 08. 31. 12:00</span>
+                </div>
             </div>
         </section>
         <section id="invitation" class="content-section">
@@ -820,27 +1023,32 @@
                 Invitation
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
-            <p>
-                2019년 6월,<br>
-                같은 학교에서 만나<br>
-                서로의 하루를 특별하게 만들어주는<br>
-                사람이 되었습니다.
-                <br><br>
-                2025년 8월,<br>
-                부부로서 새로운 여정을 시작하려 합니다.<br>
-                소중한 분들의 따뜻한 축복 속에서<br>
-                영원의 약속을 나누고자 합니다.
-                <br><br>
-                저희의 첫 걸음이<br>
-                여러분의 귀한 걸음과 만나<br>
-                더 큰 행복이 되길 소망합니다.
-                <br><br>
-                사랑의 서약에 함께해 주신다면<br>
-                한없이 감사하는 마음으로 간직하겠습니다.
-            </p>
-            <div class="names">
-                김현수 · 윤혜영의 장남   <strong>김 민 우</strong><br>
-                김응빈 · 임성미의 장녀   <strong>김 채 은</strong>
+            <div class="invitation-text-wrapper">
+                <p>
+                    2019년 6월,<br>
+                    같은 학교에서 만나<br>
+                    서로의 하루를 특별하게 만들어주는<br>
+                    사람이 되었습니다.
+                    <br><br>
+                    2025년 8월,<br>
+                    부부로서 새로운 여정을 시작하려 합니다.<br>
+                    소중한 분들의 따뜻한 축복 속에서<br>
+                    영원의 약속을 나누고자 합니다.
+                    <br><br>
+                    저희의 첫 걸음이<br>
+                    여러분의 귀한 걸음과 만나<br>
+                    더 큰 행복이 되길 소망합니다.
+                    <br><br>
+                    사랑의 서약에 함께해 주신다면<br>
+                    한없이 감사하는 마음으로 간직하겠습니다.
+                </p>
+
+                <div class="divider"></div>
+
+                <div class="names">
+                    김현수 · 윤혜영의 장남   <strong>김 민 우</strong><br>
+                    김응빈 · 임성미의 장녀   <strong>김 채 은</strong>
+                </div>
             </div>
         </section>
 
@@ -893,27 +1101,34 @@
                 <a href="https://kko.kakao.com/4TGZ9_x-9x" target="_blank" class="btn"
                    style="background-color: #FEE500; color: #333333">카카오맵</a>
             </div>
-            <div style="text-align: left; margin-top: 30px; line-height: 1.9; font-size: 0.95em;">
-                <p style="font-size: 1.2em; font-weight: bold; margin-bottom: 15px;">오시는 길 안내</p>
+            <div class="guidance-container">
+                <div class="guidance-section parking-info">
+                    <h3>주차 안내</h3>
+                    <ul>
+                        <li>호텔 지하 주차장 <strong class="highlight">H 구역</strong>이 가장 가깝습니다. (호텔 입구 좌측 차선으로 진입)</li>
+                        <li>H 구역 만차 시, A(어드벤처), D(백화점), M(마트) 구역 주차 후 <strong class="highlight-alt">지하 3층 순환카</strong>를 이용해 호텔로 이동하실 수 있습니다.</li>
+                        <li>하객분들께는 <strong class="highlight">6시간 무료 주차</strong>가 지원됩니다.</li>
+                        <div class="notice-text">※ 롯데월드타워 주차장은 지원되지 않습니다.</div>
+                    </ul>
+                </div>
 
-                <p style="margin-bottom: 10px;"><strong>[주차 안내]</strong></p>
-                <ul style="list-style-position: inside; padding-left: 5px;">
-                    <li>호텔 지하 주차장 <strong style="color: #3154f6;">H 구역</strong>이 가장 가깝습니다. (호텔 입구 좌측 차선으로 진입)</li>
-                    <li>H 구역 만차 시, A(어드벤처), D(백화점), M(마트) 구역 주차 후 <strong>지하 3층 순환카</strong>를 이용해 호텔로 이동하실 수 있습니다.</li>
-                    <li>하객분들께는 <strong style="color: #3154f6;">6시간 무료 주차</strong>가 지원됩니다.</li>
-                    <strong style="color: #E74C3C;">※ 롯데월드타워 주차장은 지원되지 않으니 유의 바랍니다.</strong>
-                </ul>
-
-                <p style="margin-top: 20px; margin-bottom: 10px;"><strong>[대중교통 안내]</strong></p>
-                <ul style="list-style-position: inside; padding-left: 5px;">
-                    <li><strong>기차 (수서역 기준):</strong> 수서역 2번 출구 앞 정류장에서 <strong>2412번 버스</strong> 탑승 후 잠실역 하차 후 월드타워
-                        건너편인 호텔로 이동
-                    </li>
-                    <li><strong>고속버스 (고속버스터미널 기준):</strong> 고속터미널역에서 3호선 타고 교대역 환승 후 2호선 잠실역 하차</li>
-                    <li><strong>지하철:</strong> 2호선 잠실역 3번 출구에서 나와서 도보 5분<br>(지하철 직통연결통로 이용 시 롯데백화점 분수대와 롯데리아 사이 복도 통과 후
-                        계단 이용)
-                    </li>
-                </ul>
+                <div class="guidance-section transport-info">
+                    <h3>대중교통 안내</h3>
+                    <ul>
+                        <li>
+                            <strong>기차 (수서역 기준)</strong>
+                            <p>수서역 2번 출구 앞 정류장에서 2412번 버스 탑승 후 잠실역 하차, 월드타워 건너편 호텔로 이동</p>
+                        </li>
+                        <li>
+                            <strong>고속버스 (고속버스터미널 기준)</strong>
+                            <p>고속터미널역(3호선) 탑승 → 교대역(2호선) 환승 → 잠실역 하차</p>
+                        </li>
+                        <li>
+                            <strong>지하철</strong>
+                            <p>2호선 잠실역 3번 출구에서 도보 5분 (지하 직통연결통로 이용 시, 롯데백화점 분수대와 롯데리아 사이 복도 통과 후 계단 이용)</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -970,27 +1185,36 @@
             <p style="text-align: center; line-height: 1.8;">참석이 어려우신 분들을 위해<br>계좌번호를 기재하였습니다.<br>따뜻한 마음 감사히 간직하겠습니다.
             </p>
 
+            <div class="icon-guide">
+                <span><i class="fa-solid fa-copy"></i> 복사</span>
+                <span><i class="fa-solid fa-won-sign"></i> 송금</span>
+                <span><i class="fa-solid fa-phone"></i> 전화</span>
+            </div>
+
             <div class="account-info">
                 <h4>신랑측 계좌</h4>
                 <div class="account-row">
-                    <span><strong>신랑 김민우</strong><br>땡땡은행 123-456-789012</span>
-                    <div class="btn-group-account">
-                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
-                        <button class="copy-btn" data-clipboard-text="123456789012">복사</button>
+                    <span><strong>아버지 김현수</strong><br>하나은행<br>374-910025-96807</span>
+                    <div class="btn-group-modern">
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="37491002596807"><i class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/TJZGq" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
+                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
                 <div class="account-row">
-                    <span><strong>아버지 김현수</strong><br>은행명 111-222-333333</span>
-                    <div class="btn-group-account">
-                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
-                        <button class="copy-btn" data-clipboard-text="111222333333">복사</button>
+                    <span><strong>어머니 윤혜영</strong><br>카카오뱅크<br>3333-34-4275498</span>
+                    <div class="btn-group-modern">
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3333344275498"><i class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/kP3S6" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
+                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
                 <div class="account-row">
-                    <span><strong>어머니 윤혜영</strong><br>은행명 444-555-666666</span>
-                    <div class="btn-group-account">
-                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
-                        <button class="copy-btn" data-clipboard-text="444555666666">복사</button>
+                    <span><strong>신랑 김민우</strong><br>카카오뱅크<br>3333-24-2780476</span>
+                    <div class="btn-group-modern">
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3333242780476"><i class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/MZA_8" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
+                        <a href="tel:0502-6812-9216" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
             </div>
@@ -998,24 +1222,27 @@
             <div class="account-info">
                 <h4>신부측 계좌</h4>
                 <div class="account-row">
-                    <span><strong>신부 김채은</strong><br>꾹꾹은행 987-654-321098</span>
-                    <div class="btn-group-account">
-                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
-                        <button class="copy-btn" data-clipboard-text="987654321098">복사</button>
+                    <span><strong>아버지 김응빈</strong><br>NH농협은행<br>302-0859-9890-91</span>
+                    <div class="btn-group-modern">
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3020859989091"><i class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/DaZjC" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
+                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
                 <div class="account-row">
-                    <span><strong>아버지 김응빈</strong><br>은행명 777-888-999999</span>
-                    <div class="btn-group-account">
-                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
-                        <button class="copy-btn" data-clipboard-text="777888999999">복사</button>
+                    <span><strong>어머니 임성미</strong><br>NH농협은행<br>302-1430-0848-21</span>
+                    <div class="btn-group-modern">
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3021430084821"><i class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/fEp8u" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
+                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
                 <div class="account-row">
-                    <span><strong>어머니 임성미</strong><br>은행명 123-123-456789</span>
-                    <div class="btn-group-account">
-                        <a href="https://aq.gy/f/CGMf1/u" target="_blank" class="send-btn">송금하기</a>
-                        <button class="copy-btn" data-clipboard-text="123123456789">복사</button>
+                    <span><strong>신부 김채은</strong><br>NH농협은행<br>302-0884-0299-41</span>
+                    <div class="btn-group-modern">
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3020884029941"><i class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/CGMf1" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
+                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
             </div>
@@ -1024,24 +1251,24 @@
         <section id="clip" class="content-section">
             <h2 class="title">
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
-                Clips
+                Clip
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
-            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">
-                <iframe
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                        src="https://www.youtube.com/embed/w-nHyBtBC_U?si=gWT7dZcDvuW-3JDU"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; clipboard-write; encrypted-media; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">
-                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                        src="https://www.youtube.com/embed/BgYR1WAJcgI?si=vTiXHBvuat50ZqmA"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
+<!--            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">-->
+<!--                <iframe-->
+<!--                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"-->
+<!--                        src="https://www.youtube.com/embed/w-nHyBtBC_U?si=gWT7dZcDvuW-3JDU"-->
+<!--                        title="YouTube video player" frameborder="0"-->
+<!--                        allow="accelerometer; clipboard-write; encrypted-media; web-share"-->
+<!--                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+<!--            </div>-->
+<!--            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">-->
+<!--                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"-->
+<!--                        src="https://www.youtube.com/embed/BgYR1WAJcgI?si=vTiXHBvuat50ZqmA"-->
+<!--                        title="YouTube video player" frameborder="0"-->
+<!--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"-->
+<!--                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+<!--            </div>-->
         </section>
 
         <footer>
@@ -1224,7 +1451,7 @@
 
         const galleryGridWrapper = document.getElementById('gallery-grid-wrapper');
         const galleryModal = document.getElementById('gallery-modal');
-        const closeModalBtn = document.querySelector('.gallery-modal-close');
+        // const closeModalBtn = document.querySelector('.gallery-modal-close');
         let modalSwiper; // 모달 Swiper 인스턴스를 저장할 변수
 
 // 1. 모달 Swiper 초기화 (페이지 로드 시 한 번만)
@@ -1276,9 +1503,9 @@
         });
 
 // 4. 모달 닫기 버튼 클릭 시 모달 닫기
-        closeModalBtn.addEventListener('click', function () {
-            galleryModal.classList.remove('active');
-        });
+//         closeModalBtn.addEventListener('click', function () {
+//             galleryModal.classList.remove('active');
+//         });
 
 // 모달의 어두운 배경 클릭 시 닫기 (선택 사항)
         galleryModal.addEventListener('click', function (e) {
@@ -1287,17 +1514,44 @@
             }
         });
 
-        const copyButtons = document.querySelectorAll('.copy-btn');
+        const copyButtons = document.querySelectorAll('.icon-btn-modern.copy-icon');
+
         copyButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const textToCopy = button.getAttribute('data-clipboard-text').replace(/-/g, '');
-                navigator.clipboard.writeText(textToCopy)
-                    .then(() => {
-                        alert('계좌번호가 복사되었습니다.');
-                    })
-                    .catch(err => {
-                        alert('복사에 실패했습니다.');
-                    });
+                const accountRow = button.closest('.account-row');
+                if (!accountRow) return;
+
+                const span = accountRow.querySelector('span');
+                if (!span) return;
+
+                try {
+                    // 1. 이름, 은행, 계좌번호 정보 가져오기
+                    const nameWithTitle = span.querySelector('strong').textContent.trim(); // "아버지 김현수"
+                    const name = nameWithTitle.split(' ').pop(); // "김현수"
+
+                    const htmlContent = span.innerHTML;
+                    const parts = htmlContent.split('<br>'); // <br>을 기준으로 분리
+
+                    const bank = parts[1].trim();
+                    const accountNumber = parts[2].trim();
+
+                    // 2. "계좌번호 은행 이름" 형태로 텍스트 조합
+                    const textToCopy = `${accountNumber} ${bank} ${name}`;
+
+                    // 3. 클립보드에 저장
+                    navigator.clipboard.writeText(textToCopy)
+                        .then(() => {
+                            // 4. 복사 성공 시 사용자에게 알림
+                            alert('계좌 정보가 복사되었습니다:\n' + textToCopy);
+                        })
+                        .catch(err => {
+                            console.error('복사 실패:', err);
+                            alert('복사에 실패했습니다.');
+                        });
+                } catch (e) {
+                    console.error('계좌 정보 처리 중 오류:', e);
+                    alert('정보를 처리하는 중 오류가 발생했습니다.');
+                }
             });
         });
     });
