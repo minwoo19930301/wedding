@@ -430,7 +430,7 @@
         }
 
         /* --- 메인 (이하 기존과 동일) --- */
-        #hero {
+        #front {
             height: 75vh;
             position: relative;
             display: flex;
@@ -439,20 +439,20 @@
             padding-top: 10px;
         }
 
-        #hero-background {
+        #front-background {
             height: 90%;
             object-fit: cover;
             transform: none !important;
             transition: none !important;
         }
 
-        #hero-title-area {
+        #front-title-area {
             /* position과 z-index는 더 이상 필요 없으므로 삭제합니다. */
             text-align: center;
             /* 사진과 제목 사이에 적절한 간격을 줍니다. */
         }
 
-        #hero-title-area .location {
+        #front-title-area .location {
             font-family: 'Noracle', sans-serif; /* Mermaid 폰트 적용 */
             font-size: 2em; /* 이름과 날짜 사이의 적절한 크기로 조절 */
             margin: 20px 0; /* 위아래 여백 추가 */
@@ -460,24 +460,24 @@
             font-weight: 600;
         }
 
-        #hero-title-area .small-text {
+        #front-title-area .small-text {
             font-size: 0.8em; /* 작은 글씨 크기 조절 */
             font-weight: 10;
         }
 
-        #hero-title-area h1, #hero-title-area p {
+        #front-title-area h1, #front-title-area p {
             font-family: 'DarrelAllura', cursive;
             color: var(--sea-deep-blue);
             text-shadow: 0 1px 3px rgba(255, 255, 255, 0.7);
             white-space: nowrap;
         }
 
-        #hero-title-area h1 {
+        #front-title-area h1 {
             font-size: clamp(2.8rem, 12vw, 4.5rem);
             font-weight: normal;
         }
 
-        #hero-title-area p {
+        #front-title-area p {
             font-size: clamp(1.5rem, 6vw, 2rem);
             margin-top: 0.5rem;
         }
@@ -969,6 +969,19 @@
             color: #999;
         }
 
+        .copyright {
+            position: absolute; /* container를 기준으로 위치 고정 */
+            right: 25px;      /* 오른쪽에서 25px 떨어짐 */
+            bottom: 20px;     /* 아래쪽에서 20px 떨어짐 */
+            z-index: 5;       /* 다른 요소들 위에 보이도록 설정 */
+
+            font-size: 0.75em;
+            font-family: Mermaid, sans-serif;
+            letter-spacing: 0.5px;
+
+            color: rgb(8, 56, 110);
+            text-shadow: none; /* 그림자 제거 */
+        }
     </style>
 
 
@@ -999,14 +1012,14 @@
 
 <div class="container">
     <div class="content-wrapper">
-        <section id="hero">
-            <img id="hero-background"
+        <section id="front">
+            <img id="front-background"
                  src="images/0.jpg"
                  alt="결혼식 메인 사진">
         </section>
 
         <section>
-            <div id="hero-title-area">
+            <div id="front-title-area">
                 <h1 style="font-weight: 500;">Minwoo + Chaeeun</h1>
                 <br>
                 <div class="location">
@@ -1275,6 +1288,7 @@
             <p>저희의 새로운 시작을 <br><br> 축복해주셔서 감사합니다.</p>
         </footer>
 
+        <p class="copyright">Made with ♥︎ by 신랑 김민우</p>
     </div>
 </div>
 <div id="gallery-modal" class="gallery-modal">
