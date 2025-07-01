@@ -982,6 +982,67 @@
             color: rgb(8, 56, 110);
             text-shadow: none; /* 그림자 제거 */
         }
+        /*--- 지도 고정 스타일 (확대/축소 버튼은 클릭 가능) ---*/
+        .map-wrapper {
+            position: relative; /* 자식 요소의 위치 기준점 */
+        }
+
+        /* 지도 드래그를 막는 투명한 막 */
+        .map-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2; /* 이 막의 높이는 2층 */
+            background: transparent;
+        }
+
+        /* 지도 확대/축소 버튼을 투명한 막 위로 올리는 설정 */
+        /* 카카오맵이 자동으로 생성하는 클래스 이름을 직접 사용합니다 */
+        .root_daum_roughmap .wrap_btn_zoom {
+            position: relative; /* z-index를 적용하기 위해 필요 */
+            z-index: 3; /* 막의 높이(2층)보다 높은 3층으로 설정 */
+        }
+        .drag-guide {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            z-index: 10;
+
+            /* 초기에는 숨겨진 상태 */
+            opacity: 0;
+            visibility: hidden;
+
+            /* 애니메이션 효과가 적용될 때 부드럽게 */
+            transition: opacity 0.5s ease;
+        }
+
+        /* JS로 이 클래스가 추가되면 애니메이션 시작 */
+        .drag-guide.show {
+            visibility: visible;
+            animation: fadeInOut 2s ease-in-out forwards;
+        }
+
+        .drag-guide i {
+            margin-right: 8px;
+        }
+
+        /* 나타났다가 사라지는 애니메이션 정의 */
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
     </style>
 
 
@@ -1105,8 +1166,10 @@
                 롯데호텔 월드(잠실) 사파이어볼룸 (지하 1층)
             </p>
             <div class="map-container">
-                <div id="daumRoughmapContainer1750824419386"
-                     class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                <div class="map-wrapper">
+                    <div id="daumRoughmapContainer1750824419386"
+                         class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                </div>
             </div>
             <div class="btn-group">
                 <a href="https://naver.me/FK5de3rC" target="_blank" class="btn"
@@ -1329,6 +1392,10 @@
             <div class="swiper-slide"><img src="images/33.jpg"/></div>
         </div>
     </div>
+    <div id="drag-guide" class="drag-guide">
+        <i class="fa-solid fa-arrows-left-right"></i>
+        <span>옆으로 드래그하여 다른 사진을 볼 수 있어요</span>
+    </div>
 </div>
 <div id="lightbox">
     <span class="lightbox-close">&times;</span>
@@ -1344,7 +1411,7 @@
     new daum.roughmap.Lander({
         "timestamp": "1750824419386",
         "key": "466ik7xz48b",
-        "mapHeight": "130"
+        "mapHeight": "180",
     }).render();
 </script>
 
@@ -1467,8 +1534,20 @@
         const galleryModal = document.getElementById('gallery-modal');
         // const closeModalBtn = document.querySelector('.gallery-modal-close');
         let modalSwiper; // 모달 Swiper 인스턴스를 저장할 변수
-
+        let hasShownDragGuide = false;
 // 1. 모달 Swiper 초기화 (페이지 로드 시 한 번만)
+        const modalSlides = document.querySelectorAll('.modal-swiper .swiper-slide');
+        modalSlides.forEach(slide => {
+            const img = slide.querySelector('img');
+            if (img) {
+                const zoomContainer = document.createElement('div');
+                zoomContainer.className = 'swiper-zoom-container';
+                // 기존 이미지를 새로 만든 zoomContainer 안으로 이동시킵니다.
+                zoomContainer.appendChild(img);
+                // 완성된 zoomContainer를 슬라이드에 추가합니다.
+                slide.appendChild(zoomContainer);
+            }
+        });
         modalSwiper = new Swiper(".modal-swiper", {
             effect: "coverflow",
             grabCursor: true,
@@ -1476,11 +1555,14 @@
             slidesPerView: "auto",
             loop: true,
             coverflowEffect: {
-                rotate: 50,
+                rotate: 40,
                 stretch: 0,
                 depth: 100,
                 modifier: 1,
                 slideShadows: true,
+            },
+            zoom: {
+                maxRatio: 3,
             },
             // 페이지 로드 시점에 첫 번째 슬라이드로 미리 이동시켜 둡니다.
             initialSlide: 0,
@@ -1488,45 +1570,40 @@
 
 
 // 2. 그리드 아이템 클릭 시 모달 열기
-        galleryGridWrapper.addEventListener('click', function (e) {
-            const clickedItem = e.target.closest('.gallery-grid-item');
-            if (clickedItem) {
-                const clickedIndex = parseInt(clickedItem.dataset.index, 10);
+        if (galleryGridWrapper) {
+            galleryGridWrapper.addEventListener('click', function (e) {
+                const clickedItem = e.target.closest('.gallery-grid-item');
+                if (clickedItem) {
+                    const clickedIndex = parseInt(clickedItem.dataset.index, 10);
+                    modalSwiper.slideToLoop(clickedIndex, 0);
 
-                // 클릭한 슬라이드로 즉시 이동시킵니다.
-                modalSwiper.slideToLoop(clickedIndex, 0);
+                    if (galleryModal) {
+                        galleryModal.classList.add('active');
 
-                // .active 클래스를 추가하여 모달을 보이게 합니다.
-                galleryModal.classList.add('active');
+                        // ▼▼▼ 최초 1회 안내 문구를 보여주는 로직 ▼▼▼
+                        if (!hasShownDragGuide) {
+                            const guideEl = document.getElementById('drag-guide');
+                            if (guideEl) {
+                                guideEl.classList.add('show');
+                            }
+                            hasShownDragGuide = true; // 봤다고 표시
+                        }
+                    }
+                    modalSwiper.update();
+                }
+            });
+        }
 
-                // update는 더 이상 필수가 아니지만, 만일을 위해 유지합니다.
-                modalSwiper.update();
-            }
-        });
-
-// 3. 모달 닫기 버튼 클릭 시 모달 닫기
-        galleryModal.addEventListener('click', function () {
-            galleryModal.classList.remove('active');
-        });
 
 // 4. 모달의 어두운 배경 클릭 시 닫기
-        galleryModal.addEventListener('click', function (e) {
-            if (e.target === galleryModal) {
-                galleryModal.classList.remove('active');
-            }
-        });
+        if (galleryModal) {
+            galleryModal.addEventListener('click', function (e) {
+                if (e.target === galleryModal) {
+                    galleryModal.classList.remove('active');
+                }
+            });
+        }
 
-// 4. 모달 닫기 버튼 클릭 시 모달 닫기
-//         closeModalBtn.addEventListener('click', function () {
-//             galleryModal.classList.remove('active');
-//         });
-
-// 모달의 어두운 배경 클릭 시 닫기 (선택 사항)
-        galleryModal.addEventListener('click', function (e) {
-            if (e.target === galleryModal) {
-                galleryModal.classList.remove('active');
-            }
-        });
 
         const copyButtons = document.querySelectorAll('.icon-btn-modern.copy-icon');
 
