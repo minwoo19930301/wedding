@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🤵민우와 채은이👰의 결혼식💍에 초대합니다💐🤍🎉</title>
+    <title>🤍민우🤵와 👰채은이🎀의 💍결혼식에🍾 🥂초대합니다🎊</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <style>
@@ -437,12 +437,14 @@
             flex-direction: column;
             align-items: center;
             padding-top: 10px;
+            transform: scale(1) !important;
+            transition: none !important;
         }
 
         #front-background {
             height: 90%;
             object-fit: cover;
-            transform: none !important;
+            transform: scale(1) !important;
             transition: none !important;
         }
 
@@ -766,46 +768,6 @@
             word-break: keep-all; /* 이름과 계좌번호가 같이 내려가도록 */
         }
 
-        .btn-group-account {
-            display: flex;
-            align-items: center;
-            gap: 8px; /* 버튼 사이 간격 */
-            flex-shrink: 0; /* 버튼이 작아지지 않도록 설정 */
-        }
-
-        .send-btn {
-            padding: 8px 15px;
-            border: 1px solid var(--coral-pink);
-            background-color: var(--coral-pink);
-            color: white;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none; /* a 태그의 밑줄 제거 */
-            font-size: 1em; /* 다른 버튼과 폰트 크기 통일 */
-            white-space: nowrap; /* '송금하기' 글자 줄바꿈 방지 */
-        }
-
-        .send-btn:hover {
-            opacity: 0.8;
-        }
-
-        .copy-btn {
-            padding: 8px 15px;
-            border: 1px solid var(--coral-pink);
-            background-color: white;
-            color: var(--coral-pink);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1em; /* 다른 버튼과 폰트 크기 통일 */
-            white-space: nowrap; /* '복사' 글자 줄바꿈 방지 */
-        }
-
-        .copy-btn:hover {
-            background-color: var(--coral-pink);
-            color: white;
-        }
 
         footer {
             padding: 80px 30px;
@@ -1536,18 +1498,7 @@
         let modalSwiper; // 모달 Swiper 인스턴스를 저장할 변수
         let hasShownDragGuide = false;
 // 1. 모달 Swiper 초기화 (페이지 로드 시 한 번만)
-        const modalSlides = document.querySelectorAll('.modal-swiper .swiper-slide');
-        modalSlides.forEach(slide => {
-            const img = slide.querySelector('img');
-            if (img) {
-                const zoomContainer = document.createElement('div');
-                zoomContainer.className = 'swiper-zoom-container';
-                // 기존 이미지를 새로 만든 zoomContainer 안으로 이동시킵니다.
-                zoomContainer.appendChild(img);
-                // 완성된 zoomContainer를 슬라이드에 추가합니다.
-                slide.appendChild(zoomContainer);
-            }
-        });
+
         modalSwiper = new Swiper(".modal-swiper", {
             effect: "coverflow",
             grabCursor: true,
@@ -1562,7 +1513,7 @@
                 slideShadows: true,
             },
             zoom: {
-                maxRatio: 3,
+                maxRatio: 2.5,
             },
             // 페이지 로드 시점에 첫 번째 슬라이드로 미리 이동시켜 둡니다.
             initialSlide: 0,
