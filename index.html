@@ -6,6 +6,7 @@
     <title>🤍민우🤵와 👰채은이🎀의 💍결혼식에🍾 🥂초대합니다🎊</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <meta name="format-detection" content="telephone=no">
     <style>
         /* --- 폰트 정의 --- */
         @font-face {
@@ -100,7 +101,7 @@
         .content-wrapper {
             position: relative;
             z-index: 2;
-            background: linear-gradient(180deg, rgba(240, 249, 255, 0.88) 0%, rgb(168, 212, 255) 100%);
+            background: linear-gradient(180deg, rgba(233, 255, 252, 0.88) 0%, rgb(195, 228, 255) 100%);
         }
 
         /* --- 인트로 --- */
@@ -647,6 +648,7 @@
             color: #E74C3C;
             font-weight: 700;
             margin-top: 15px;
+            line-height: 1.8;
         }
 
         #gallery {
@@ -896,9 +898,9 @@
             width: 38px;   /* 아이콘 원 크기 */
             height: 38px;
             border-radius: 50%;
-            border: 1px solid #ddd;
+            border: 1px solid #F1948A;
             background-color: #fff;
-            color: #888;
+            color: #F1948A;
             font-size: 0.95em; /* 아이콘 크기 */
             text-decoration: none;
             cursor: pointer;
@@ -929,7 +931,7 @@
 
         .icon-guide i {
             margin-right: 5px;
-            color: #999;
+            color: #F1948A;
         }
 
         .copyright {
@@ -987,6 +989,7 @@
 
             /* 애니메이션 효과가 적용될 때 부드럽게 */
             transition: opacity 0.5s ease;
+            pointer-events: none;
         }
 
         /* JS로 이 클래스가 추가되면 애니메이션 시작 */
@@ -1147,7 +1150,7 @@
                         <li>호텔 지하 주차장 <strong class="highlight">H 구역</strong>이 가장 가깝습니다. (호텔 입구 좌측 차선으로 진입)</li>
                         <li>H 구역 만차 시, A(어드벤처), D(백화점), M(마트) 구역 주차 후 <strong class="highlight-alt">지하 3층 순환카</strong>를 이용해 호텔로 이동하실 수 있습니다.</li>
                         <li>하객분들께는 <strong class="highlight">6시간 무료 주차</strong>가 지원됩니다.</li>
-                        <div class="notice-text">※ 롯데월드타워 주차장은 지원되지 않습니다.</div>
+                        <div class="notice-text">※ 롯데월드타워, 롯데월드몰, 시그니엘 주차장은 주차비가 지원되지 않습니다.</div>
                     </ul>
                 </div>
 
@@ -1293,14 +1296,14 @@
                 Clip
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
-<!--            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">-->
-<!--                <iframe-->
-<!--                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"-->
-<!--                        src="https://www.youtube.com/embed/w-nHyBtBC_U?si=gWT7dZcDvuW-3JDU"-->
-<!--                        title="YouTube video player" frameborder="0"-->
-<!--                        allow="accelerometer; clipboard-write; encrypted-media; web-share"-->
-<!--                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
-<!--            </div>-->
+            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">
+                <iframe
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                        src="https://www.youtube.com/embed/w-nHyBtBC_U?si=gWT7dZcDvuW-3JDU"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; clipboard-write; encrypted-media; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
 <!--            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">-->
 <!--                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"-->
 <!--                        src="https://www.youtube.com/embed/BgYR1WAJcgI?si=vTiXHBvuat50ZqmA"-->
@@ -1512,9 +1515,6 @@
                 depth: 100,
                 modifier: 1,
                 slideShadows: true,
-            },
-            zoom: {
-                maxRatio: 2.5,
             },
             // 페이지 로드 시점에 첫 번째 슬라이드로 미리 이동시켜 둡니다.
             initialSlide: 0,
