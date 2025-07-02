@@ -346,15 +346,18 @@
             height: 100%;
             overflow: hidden;
             z-index: 120; /* Above underwater background, below content */
+            pointer-events: none;
         }
 
         .bubble {
+            pointer-events: auto;
             position: absolute;
             bottom: -30px;
             border-radius: 50%;
             opacity: 10;
             border: 2.5px solid transparent;
             animation: rise 6s infinite ease-in;
+            z-index: 1001;
 
             /* --- 수정된 부분 --- */
 
@@ -382,6 +385,29 @@
                 transform: translateY(-120vh) translateX(30px);
                 opacity: 0;
             }
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.3); /* 살짝 커지면서 */
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(0.9); /* 약간 작아지며 희미해짐 */
+                opacity: 0;
+            }
+        }
+        .bubble-fragment {
+            background: white;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            position: fixed;
+            z-index: 121; /* 비눗방울보다 위에 표시 */
         }
 
         /* --- 물거품 효과 끝 --- */
@@ -983,7 +1009,7 @@
             width: 100%;
             height: 100%;
             background-color: #000;
-            z-index: 1001;
+            z-index: 9999;
 
             /* ▼▼▼ 숨기는 방식을 display:none 대신 아래와 같이 변경합니다 ▼▼▼ */
             display: flex; /* 레이아웃 유지를 위해 항상 flex로 설정 */
@@ -1622,20 +1648,68 @@
             const bubble = document.createElement('div');
             bubble.className = 'bubble';
             bubble.style.left = `${Math.random() * 98}%`;
-            bubble.style.animationDuration = `${4 + Math.random() * 8}s`; // 지속시간은 자유롭게 조정
-            bubble.style.animationDelay = `${Math.random() * 1}s`; // 시작 시간을 조금씩 다르게 하여 자연스럽게
+            bubble.style.animationDuration = `${4 + Math.random() * 8}s`;
+            bubble.style.animationDelay = `${Math.random() * 1}s`;
             const size = `${10 + Math.random() * 20}px`;
             bubble.style.width = size;
             bubble.style.height = size;
 
-            // 3. 각 물거품이 애니메이션 반복을 마칠 때마다 이벤트를 감지
-            bubble.addEventListener('animationiteration', function (event) {
-                // 신호등이 '멈춤' 상태이면
-                if (stopBubbleGeneration) {
-                    // 해당 물거품을 보이지 않게 처리
-                    event.target.style.display = 'none';
+            // ▼▼▼ 새로 추가된 부분 ▼▼▼
+
+            // 1. 각 비눗방울에 클릭 이벤트 추가
+            bubble.addEventListener('click', function(event) {
+                event.stopPropagation(); // 배경 클릭 방지
+
+                const bubbleRect = bubble.getBoundingClientRect();
+                const bubbleX = bubbleRect.left + bubbleRect.width / 2;
+                const bubbleY = bubbleRect.top + bubbleRect.height / 2;
+                const bubbleColor = window.getComputedStyle(bubble).backgroundImage; // 비눗방울 배경색 가져오기
+
+                bubble.remove(); // 기존 비눗방울은 즉시 제거
+
+                const numPieces = 15; // 흩어질 조각 개수
+                const fragmentSize = 10; // 조각 크기 (px)
+                const explosionRadius = 80; // 흩어지는 반경
+
+                for (let i = 0; i < numPieces; i++) {
+                    const fragment = document.createElement('div');
+                    fragment.className = 'bubble-fragment';
+                    fragment.style.width = `${fragmentSize}px`;
+                    fragment.style.height = `${fragmentSize}px`;
+                    fragment.style.background = bubbleColor; // 원래 비눗방울 색상 적용
+                    fragment.style.borderRadius = '50%';
+                    fragment.style.position = 'fixed'; // 화면 기준으로 위치 설정
+                    fragment.style.left = `${bubbleX - fragmentSize / 2}px`;
+                    fragment.style.top = `${bubbleY - fragmentSize / 2}px`;
+                    fragment.style.zIndex = '121'; // 비눗방울보다 살짝 위
+
+                    const angle = Math.random() * 2 * Math.PI;
+                    const distance = Math.random() * explosionRadius;
+                    const targetX = bubbleX + distance * Math.cos(angle);
+                    const targetY = bubbleY + distance * Math.sin(angle);
+
+                    const duration = 0.4 + Math.random() * 0.3; // 지속 시간 약간씩 다르게
+
+                    fragment.style.transition = `left ${duration}s ease-out, top ${duration}s ease-out, opacity ${duration * 1.2}s ease-out, transform ${duration}s ease-out`;
+
+                    bubbleWrapper.appendChild(fragment);
+
+                    // 약간의 딜레이 후 목표 위치로 이동 및 사라짐 효과
+                    setTimeout(() => {
+                        fragment.style.left = `${targetX - fragmentSize / 2}px`;
+                        fragment.style.top = `${targetY - fragmentSize / 2}px`;
+                        fragment.style.opacity = '0';
+                        fragment.style.transform = 'scale(0.7)'; // 작아지면서 사라짐
+                    }, 10);
+
+                    // 애니메이션 종료 후 조각 제거
+                    setTimeout(() => {
+                        fragment.remove();
+                    }, duration * 1200);
                 }
             });
+
+            // ▲▲▲ 여기까지 추가 ▲▲▲
 
             bubbleWrapper.appendChild(bubble);
         }
@@ -1645,9 +1719,6 @@
         function fadeOutIntro() {
             if (!introSection.classList.contains('fade-out')) {
                 introSection.classList.add('fade-out');
-                if (bubbleWrapper) {
-                    bubbleWrapper.style.pointerEvents = 'none';
-                }
 
                 const playPromise = bgmPlayer.play();
                 if (playPromise !== undefined) {
