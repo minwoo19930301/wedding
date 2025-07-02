@@ -101,7 +101,7 @@
         .content-wrapper {
             position: relative;
             z-index: 2;
-            background: linear-gradient(180deg, rgba(233, 255, 252, 0.88) 0%, rgb(195, 228, 255) 100%);
+            background: linear-gradient(180deg, rgba(252, 255, 254, 0.88) 0%, rgb(248, 253, 255) 100%);
         }
 
         /* --- 인트로 --- */
@@ -432,7 +432,7 @@
 
         /* --- 메인 (이하 기존과 동일) --- */
         #front {
-            height: 75vh;
+            /*height: 75vh;*/
             position: relative;
             display: flex;
             flex-direction: column;
@@ -590,6 +590,7 @@
         }
         /*--- 📅 캘린더 섹션 스타일 (통합형) 📅 ---*/
         .calendar-container {
+            position: relative; /* 시계 아이콘 위치 기준점 */
             margin-top: 30px;
             padding: 30px 25px;
             background-color: rgba(255, 255, 255, 0.7);
@@ -671,6 +672,68 @@
             font-weight: normal;
         }
 
+        /* ★★★ 새로 추가된 시계 아이콘 스타일 ★★★ */
+        .clock-overlay {
+            position: absolute;
+            bottom: -20px;
+            right: -10px;
+            width: 175px;
+            height: 175px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 3px solid var(--coral-pink);
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+            z-index: 10;
+            /* 숫자를 위한 폰트 설정 (청첩장 다른 부분과 통일) */
+            font-family: 'Noracle', sans-serif;
+        }
+
+        /* 새로 추가된 숫자 스타일 */
+        .clock-overlay .num {
+            position: absolute;
+            color: var(--text-dark); /* 눈에 잘 띄는 어두운 색상 */
+            font-size: 26px;
+            font-weight: 600;
+            /* 숫자를 각 위치의 정중앙에 배치하기 위한 설정 */
+            transform: translate(-50%, -50%);
+        }
+
+        .clock-overlay .num12 { top: 18px; left: 50%; }
+        .clock-overlay .num3 { top: 50%; right: 10px; transform: translate(0, -50%);}
+        .clock-overlay .num6 { bottom: -10px; left: 50%; }
+        .clock-overlay .num9 { top: 50%; left: 10px; transform: translate(0, -50%);}
+
+
+        /* 시침, 분침의 기본 스타일 */
+        .clock-overlay::before,
+        .clock-overlay::after {
+            content: '';
+            position: absolute;
+            transform-origin: bottom center;
+            border-radius: 2px;
+        }
+
+        /* 시침 (짧은 바늘) 스타일 */
+        .clock-overlay::before {
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 30px;
+            background: var(--coral-pink);
+            transform: translate(-50%, -100%) rotate(0deg);
+            z-index: 12;
+        }
+
+        /* 분침 (긴 바늘) 스타일 */
+        .clock-overlay::after {
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 65px;
+            background-color: #5D6D7E; /* 차콜 그레이 색상 적용 */
+            transform: translate(-50%, -100%) rotate(0deg);
+            z-index: 11;
+        }
         /* 주차 아이콘 (P) */
         .parking-info h3::before {
             content: 'Park';
@@ -1205,9 +1268,12 @@
         <section id="calendar" class="content-section">
             <h2 class="title">
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
-                Calendar
+                Date & Time
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 30px; line-height: 1.8;">
+                <strong>2025년 8월 31일 일요일 낮 12시</strong>
+            </p>
             <div class="calendar-container">
                 <div class="calendar-header">
                     <h3>2025년 8월</h3>
@@ -1248,6 +1314,12 @@
                     <div class="day other-month">5</div>
                     <div class="day sat other-month">6</div>
                 </div>
+                <div class="clock-overlay">
+                    <span class="num num12">12</span>
+                    <span class="num num3">3</span>
+                    <span class="num num6">6</span>
+                    <span class="num num9">9</span>
+                </div>
             </div>
         </section>
 
@@ -1258,7 +1330,6 @@
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
             <p>
-                <strong>2025년 8월 31일 일요일 낮 12시</strong><br>
                 롯데호텔 월드(잠실) 사파이어볼룸 (지하 1층)
             </p>
             <div class="map-container">
@@ -1514,6 +1585,28 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        function setFrontSectionHeight() {
+            // 1. window.innerHeight를 통해 현재 보이는 화면의 실제 높이를 가져옵니다.
+            const innerHeight = window.innerHeight;
+
+            // 2. 높이를 조절할 #front 요소를 찾습니다.
+            const frontSection = document.getElementById('front');
+
+            // 3. 요소의 높이를 '실제 높이 * 0.75' 픽셀 값으로 직접 설정합니다. (75vh와 동일한 효과)
+            if (frontSection) {
+                frontSection.style.height = (innerHeight * 0.75) + 'px';
+            }
+        }
+
+        // 페이지가 처음 로드될 때 함수를 실행합니다.
+        setFrontSectionHeight();
+
+        // 화면 크기가 변경될 때(예: 스마트폰 가로/세로 회전)도 다시 계산하도록 합니다.
+        window.addEventListener('resize', setFrontSectionHeight);
+
+
+
+
         const introSection = document.getElementById('intro');
         const bgmPlayer = document.getElementById('bgm-player');
         document.addEventListener('visibilitychange', function () {
