@@ -458,58 +458,40 @@
         }
 
         /* --- 메인 (이하 기존과 동일) --- */
-        #front {
-            height: 75svh; /* svh 단위로 변경 */
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transform: scale(1) !important;
-            transition: none !important;
+        #main-photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px; /* 사진 모서리를 부드럽게 */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* 입체감 있는 그림자 */
+            margin-top: -30px
         }
 
-        #front-background {
-            height: 90%;
-            object-fit: cover;
-            transform: scale(1) !important;
-            transition: none !important;
-        }
-
-        #front-title-area {
-            margin-top: -2vh;
-            /* position과 z-index는 더 이상 필요 없으므로 삭제합니다. */
+        #main-title-area {
             text-align: center;
-            /* 사진과 제목 사이에 적절한 간격을 줍니다. */
+            margin-top: 40px; /* 사진과 제목 사이 여백 */
         }
 
-        #front-title-area .location {
-            font-family: 'Noracle', sans-serif; /* Mermaid 폰트 적용 */
-            font-size: 2em; /* 이름과 날짜 사이의 적절한 크기로 조절 */
-            margin: 20px 0; /* 위아래 여백 추가 */
+        /* 기존 제목 스타일은 그대로 활용합니다 */
+        #main-title-area .location {
+            font-family: 'Noracle', sans-serif;
+            font-size: 2em;
             color: var(--sea-deep-blue);
             font-weight: 600;
         }
 
-        #front-title-area .small-text {
-            font-size: 0.8em; /* 작은 글씨 크기 조절 */
+        #main-title-area .small-text {
+            font-size: 0.8em;
             font-weight: 10;
         }
 
-        #front-title-area h1, #front-title-area p {
+        #main-title-area h1 {
             font-family: 'DarrelAllura', cursive;
             color: var(--sea-deep-blue);
             text-shadow: 0 1px 3px rgba(255, 255, 255, 0.7);
             white-space: nowrap;
-        }
-
-        #front-title-area h1 {
             font-size: clamp(2.8rem, 12vw, 4.5rem);
             font-weight: normal;
-        }
-
-        #front-title-area p {
-            font-size: clamp(1.5rem, 6vw, 2rem);
-            margin-top: 0.5rem;
         }
 
         .invitation-text-wrapper {
@@ -1210,14 +1192,10 @@
 
 <div class="container">
     <div class="content-wrapper">
-        <section id="front">
-            <img id="front-background"
-                 src="images/main.jpg"
-                 alt="결혼식 메인 사진">
-        </section>
+        <section class="content-section" style="padding-top: 50px; padding-bottom: 50px;">
+            <img id="main-photo" src="images/main.jpg" alt="결혼식 메인 사진">
 
-        <section>
-            <div id="front-title-area">
+            <div id="main-title-area">
                 <h1 style="font-weight: 500;">Minwoo + Chaeeun</h1>
                 <br>
                 <div class="location">
@@ -1228,6 +1206,7 @@
                 </div>
             </div>
         </section>
+
         <section id="invitation" class="content-section">
             <h2 class="title">
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
