@@ -432,7 +432,8 @@
 
         /* --- 메인 (이하 기존과 동일) --- */
         #front {
-            /*height: 75vh;*/
+            /* height: 75vh; */ /* 기존 vh 단위는 지우고 */
+            height: 75svh; /* svh 단위로 변경 */
             position: relative;
             display: flex;
             flex-direction: column;
@@ -1268,7 +1269,7 @@
         <section id="calendar" class="content-section">
             <h2 class="title">
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
-                Date & Time
+                Date
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
             <p style="text-align: center; font-size: 1.1em; margin-bottom: 30px; line-height: 1.8;">
