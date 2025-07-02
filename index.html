@@ -1199,7 +1199,7 @@
                     <span>LOTTE HOTEL WORLD</span><br>
                     <span class="small-text">Sapphire Ballroom</span>
                     <br>
-                    <span class="small-text">2025. 08. 31. 12:00</span>
+                    <span class="small-text">2025. 08. 31. 1200</span>
                 </div>
             </div>
         </section>
@@ -1586,28 +1586,6 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        function setFrontSectionHeight() {
-            // 1. window.innerHeight를 통해 현재 보이는 화면의 실제 높이를 가져옵니다.
-            const innerHeight = window.innerHeight;
-
-            // 2. 높이를 조절할 #front 요소를 찾습니다.
-            const frontSection = document.getElementById('front');
-
-            // 3. 요소의 높이를 '실제 높이 * 0.75' 픽셀 값으로 직접 설정합니다. (75vh와 동일한 효과)
-            if (frontSection) {
-                frontSection.style.height = (innerHeight * 0.75) + 'px';
-            }
-        }
-
-        // 페이지가 처음 로드될 때 함수를 실행합니다.
-        setFrontSectionHeight();
-
-        // 화면 크기가 변경될 때(예: 스마트폰 가로/세로 회전)도 다시 계산하도록 합니다.
-        window.addEventListener('resize', setFrontSectionHeight);
-
-
-
-
         const introSection = document.getElementById('intro');
         const bgmPlayer = document.getElementById('bgm-player');
         document.addEventListener('visibilitychange', function () {
