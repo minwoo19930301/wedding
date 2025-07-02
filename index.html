@@ -433,7 +433,7 @@
         /* --- 메인 (이하 기존과 동일) --- */
         #front {
             /* height: 75vh; */ /* 기존 vh 단위는 지우고 */
-            height: 75svh; /* svh 단위로 변경 */
+            /*height: 75svh; !* svh 단위로 변경 *!*/
             position: relative;
             display: flex;
             flex-direction: column;
@@ -1585,6 +1585,23 @@
 
 
 <script>
+
+    function setFrontSectionHeight() {
+        // 50ms (0.05초) 후에 높이를 계산하여 브라우저가 렌더링할 시간을 확보합니다.
+        setTimeout(function() {
+            const innerHeight = window.innerHeight;
+            const frontSection = document.getElementById('front');
+            if (frontSection) {
+                frontSection.style.height = (innerHeight * 0.75) + 'px';
+            }
+        }, 50);
+    }
+
+    // DOM 콘텐츠 로딩 후가 아닌, 페이지의 모든 리소스(이미지 등)가 로드된 후 함수를 실행합니다.
+    window.addEventListener('load', setFrontSectionHeight);
+    window.addEventListener('resize', setFrontSectionHeight);
+
+
     document.addEventListener('DOMContentLoaded', function () {
         const introSection = document.getElementById('intro');
         const bgmPlayer = document.getElementById('bgm-player');
