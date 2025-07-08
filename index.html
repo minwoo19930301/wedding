@@ -1162,6 +1162,12 @@
             80% { opacity: 1; }
             100% { opacity: 0; }
         }
+        /* PC 화면에서 갤러리 팝업 크기 조절 */
+        @media (min-width: 768px) {
+            .modal-swiper {
+                max-width: 1200px; /* PC에서 팝업의 최대 너비를 600px로 제한 */
+            }
+        }
     </style>
 
 
@@ -1348,6 +1354,8 @@
                    style="background-color: #03C75A">네이버지도</a>
                 <a href="https://kko.kakao.com/4TGZ9_x-9x" target="_blank" class="btn"
                    style="background-color: #FEE500; color: #333333">카카오맵</a>
+                <a href="https://tmap.life/57760ab6" target="_blank" class="btn"
+                   style="background-image: linear-gradient(to right, #F85078, #6949F8, #37E9E0);">티맵</a>
             </div>
             <div class="guidance-container">
                 <div class="guidance-section parking-info">
