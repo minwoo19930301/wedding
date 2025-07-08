@@ -1398,7 +1398,6 @@
                 <div class="gallery-grid-item" data-index="8"><img src="images/9.jpg" alt="갤러리 사진 9"></div>
                 <div class="gallery-grid-item" data-index="9"><img src="images/10.jpg" alt="갤러리 사진 10"></div>
                 <div class="gallery-grid-item" data-index="10"><img src="images/11.jpg" alt="갤러리 사진 11"></div>
-                <div class="gallery-grid-item" data-index="11"><img src="images/12.jpg" alt="갤러리 사진 12"></div>
                 <div class="gallery-grid-item" data-index="12"><img src="images/13.jpg" alt="갤러리 사진 13"></div>
                 <div class="gallery-grid-item" data-index="13"><img src="images/14.jpg" alt="갤러리 사진 14"></div>
                 <div class="gallery-grid-item" data-index="14"><img src="images/15.jpg" alt="갤러리 사진 15"></div>
@@ -1496,28 +1495,22 @@
             </div>
         </section>
 
-        <section id="clip" class="content-section">
-            <h2 class="title">
-                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
-                Clip
-                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
-            </h2>
-            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">
-                <iframe
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                        src="https://www.youtube.com/embed/w-nHyBtBC_U?si=gWT7dZcDvuW-3JDU"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; clipboard-write; encrypted-media; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
+<!--        <section id="clip" class="content-section">-->
+<!--            <h2 class="title">-->
+<!--                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">-->
+<!--                Clip-->
+<!--                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">-->
+<!--            </h2>-->
 <!--            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">-->
-<!--                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"-->
-<!--                        src="https://www.youtube.com/embed/BgYR1WAJcgI?si=vTiXHBvuat50ZqmA"-->
+<!--                <iframe-->
+<!--                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"-->
+<!--                        src="https://www.youtube.com/embed/w-nHyBtBC_U?si=gWT7dZcDvuW-3JDU"-->
 <!--                        title="YouTube video player" frameborder="0"-->
-<!--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"-->
+<!--                        allow="accelerometer; clipboard-write; encrypted-media; web-share"-->
 <!--                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
 <!--            </div>-->
-        </section>
+
+<!--        </section>-->
 
         <footer>
             <p>저희의 새로운 시작을 <br><br> 축복해주셔서 감사합니다.</p>
@@ -1540,7 +1533,6 @@
             <div class="swiper-slide"><img src="images/9.jpg"/></div>
             <div class="swiper-slide"><img src="images/10.jpg"/></div>
             <div class="swiper-slide"><img src="images/11.jpg"/></div>
-            <div class="swiper-slide"><img src="images/12.jpg"/></div>
             <div class="swiper-slide"><img src="images/13.jpg"/></div>
             <div class="swiper-slide"><img src="images/14.jpg"/></div>
             <div class="swiper-slide"><img src="images/15.jpg"/></div>
@@ -1614,7 +1606,7 @@
         let introTimeout;
 
         const bubbleWrapper = document.getElementById('bubble-wrapper');
-        const bubbleCount = 20;
+        const bubbleCount = 24;
 
         // 1. 물거품 생성을 멈출지 결정하는 '신호등' 변수 생성
         let stopBubbleGeneration = false;
@@ -1628,7 +1620,7 @@
             const bubble = document.createElement('div');
             bubble.className = 'bubble';
             bubble.style.left = `${Math.random() * 98}%`;
-            bubble.style.animationDuration = `${4 + Math.random() * 8}s`;
+            bubble.style.animationDuration = `${6 + Math.random() * 8}s`;
             bubble.style.animationDelay = `${Math.random() * 1}s`;
             const size = `${10 + Math.random() * 20}px`;
             bubble.style.width = size;
