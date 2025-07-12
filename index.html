@@ -43,7 +43,6 @@
         }
 
 
-
         :root {
             --sea-deep-blue: #015871;
             --coral-pink: #F1948A;
@@ -402,6 +401,7 @@
                 opacity: 0;
             }
         }
+
         .bubble-fragment {
             background: white;
             width: 10px;
@@ -463,7 +463,7 @@
             height: auto;
             display: block;
             border-radius: 8px; /* 사진 모서리를 부드럽게 */
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* 입체감 있는 그림자 */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* 입체감 있는 그림자 */
             margin-top: -30px
         }
 
@@ -596,6 +596,7 @@
             margin-right: 14px;
             font-weight: bold;
         }
+
         /*--- 📅 캘린더 섹션 스타일 (통합형) 📅 ---*/
         .calendar-container {
             position: relative; /* 시계 아이콘 위치 기준점 */
@@ -652,9 +653,19 @@
         }
 
         /* 토요일, 일요일 색상 */
-        .day-name.sun, .day.sun { color: #E74C3C; }
-        .day-name.sat, .day.sat { color: #3498DB; }
-        .day.sat.other-month { color: #a9d4ee; } /* 9월 토요일 색상 */
+        .day-name.sun, .day.sun {
+            color: #E74C3C;
+        }
+
+        .day-name.sat, .day.sat {
+            color: #3498DB;
+        }
+
+        .day.sat.other-month {
+            color: #a9d4ee;
+        }
+
+        /* 9월 토요일 색상 */
 
 
         /* 웨딩데이 특별 스타일 */
@@ -706,10 +717,27 @@
             transform: translate(-50%, -50%);
         }
 
-        .clock-overlay .num12 { top: 18px; left: 50%; }
-        .clock-overlay .num3 { top: 50%; right: 10px; transform: translate(0, -50%);}
-        .clock-overlay .num6 { bottom: -10px; left: 50%; }
-        .clock-overlay .num9 { top: 50%; left: 10px; transform: translate(0, -50%);}
+        .clock-overlay .num12 {
+            top: 18px;
+            left: 50%;
+        }
+
+        .clock-overlay .num3 {
+            top: 50%;
+            right: 10px;
+            transform: translate(0, -50%);
+        }
+
+        .clock-overlay .num6 {
+            bottom: -10px;
+            left: 50%;
+        }
+
+        .clock-overlay .num9 {
+            top: 50%;
+            left: 10px;
+            transform: translate(0, -50%);
+        }
 
 
         /* 시침, 분침의 기본 스타일 */
@@ -742,6 +770,7 @@
             transform: translate(-50%, -100%) rotate(0deg);
             z-index: 11;
         }
+
         /* 주차 아이콘 (P) */
         .parking-info h3::before {
             content: 'Park';
@@ -791,6 +820,7 @@
             color: #3154f6;
             font-weight: 700;
         }
+
         .guidance-section .highlight-alt {
             color: #008080; /* Teal */
             font-weight: 700;
@@ -1036,6 +1066,7 @@
             max-height: 90vh; /* 최대 높이를 화면 높이의 90%로 제한 (너무 길어지는 것 방지) */
             pointer-events: none;
         }
+
         /*---  আধুনিক হিসাবের তথ্য 아이콘 버튼 스타일 ---*/
         .btn-group-modern {
             display: flex;
@@ -1048,7 +1079,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 38px;   /* 아이콘 원 크기 */
+            width: 38px; /* 아이콘 원 크기 */
             height: 38px;
             border-radius: 50%;
             border: 1px solid #F1948A;
@@ -1067,6 +1098,7 @@
             color: #333;
             transform: scale(1.1);
         }
+
         /*--- 아이콘 설명 스타일 ---*/
         .icon-guide {
             text-align: center;
@@ -1089,9 +1121,9 @@
 
         .copyright {
             position: absolute; /* container를 기준으로 위치 고정 */
-            right: 25px;      /* 오른쪽에서 25px 떨어짐 */
-            bottom: 20px;     /* 아래쪽에서 20px 떨어짐 */
-            z-index: 5;       /* 다른 요소들 위에 보이도록 설정 */
+            right: 25px; /* 오른쪽에서 25px 떨어짐 */
+            bottom: 20px; /* 아래쪽에서 20px 떨어짐 */
+            z-index: 5; /* 다른 요소들 위에 보이도록 설정 */
 
             font-size: 0.75em;
             font-family: Mermaid, sans-serif;
@@ -1100,6 +1132,7 @@
             color: rgb(8, 56, 110);
             text-shadow: none; /* 그림자 제거 */
         }
+
         /*--- 지도 고정 스타일 (확대/축소 버튼은 클릭 가능) ---*/
         .map-wrapper {
             position: relative; /* 자식 요소의 위치 기준점 */
@@ -1123,6 +1156,7 @@
             position: relative; /* z-index를 적용하기 위해 필요 */
             z-index: 3; /* 막의 높이(2층)보다 높은 3층으로 설정 */
         }
+
         .drag-guide {
             position: absolute;
             bottom: 60px;
@@ -1157,11 +1191,20 @@
 
         /* 나타났다가 사라지는 애니메이션 정의 */
         @keyframes fadeInOut {
-            0% { opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { opacity: 0; }
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
         }
+
         /* PC 화면에서 갤러리 팝업 크기 조절 */
         @media (min-width: 768px) {
             .modal-swiper {
@@ -1368,7 +1411,9 @@
                     <h3>주차 안내</h3>
                     <ul>
                         <li>호텔 지하 주차장 <strong class="highlight">H 구역</strong>이 가장 가깝습니다. (호텔 입구 좌측 차선으로 진입)</li>
-                        <li>H 구역 만차 시, A(어드벤처), D(백화점), M(마트) 구역 주차 후 <strong class="highlight-alt">지하 3층 순환카</strong>를 이용해 호텔로 이동하실 수 있습니다.</li>
+                        <li>H 구역 만차 시, A(어드벤처), D(백화점), M(마트) 구역 주차 후 <strong class="highlight-alt">지하 3층 순환카</strong>를
+                            이용해 호텔로 이동하실 수 있습니다.
+                        </li>
                         <li>하객분들께는 <strong class="highlight">6시간 무료 주차</strong>가 지원됩니다.</li>
                         <div class="notice-text">※ 롯데월드타워, 롯데월드몰, 시그니엘 주차장은 주차비가 지원되지 않습니다.</div>
                     </ul>
@@ -1392,6 +1437,22 @@
                     </ul>
                 </div>
             </div>
+        </section>
+        <section id="clip" class="content-section">
+            <h2 class="title">
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
+                Clip
+                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
+            </h2>
+            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">
+                <iframe
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                        src="https://www.youtube.com/embed/JyFcsiBTue8?si=5SvRnE_vZvpjT-vW"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
         </section>
 
         <section id="gallery" class="content-section">
@@ -1455,25 +1516,34 @@
                 <div class="account-row">
                     <span><strong>아버지 김현수</strong><br>하나은행<br>374-910025-96807</span>
                     <div class="btn-group-modern">
-                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="37491002596807"><i class="fa-solid fa-copy"></i></button>
-                        <a href="http://aq.gy/f/TJZGq" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
-                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="37491002596807"><i
+                                class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/TJZGq" target="_blank" title="송금" class="icon-btn-modern send-icon"><i
+                                class="fa-solid fa-won-sign"></i></a>
+                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화"
+                           class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
                 <div class="account-row">
                     <span><strong>어머니 윤혜영</strong><br>카카오뱅크<br>3333-34-4275498</span>
                     <div class="btn-group-modern">
-                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3333344275498"><i class="fa-solid fa-copy"></i></button>
-                        <a href="http://aq.gy/f/kP3S6" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
-                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3333344275498"><i
+                                class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/kP3S6" target="_blank" title="송금" class="icon-btn-modern send-icon"><i
+                                class="fa-solid fa-won-sign"></i></a>
+                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화"
+                           class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
                 <div class="account-row">
                     <span><strong>신랑 김민우</strong><br>카카오뱅크<br>3333-24-2780476</span>
                     <div class="btn-group-modern">
-                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3333242780476"><i class="fa-solid fa-copy"></i></button>
-                        <a href="http://aq.gy/f/MZA_8" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
-                        <a href="tel:0502-6812-9216" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3333242780476"><i
+                                class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/MZA_8" target="_blank" title="송금" class="icon-btn-modern send-icon"><i
+                                class="fa-solid fa-won-sign"></i></a>
+                        <a href="tel:0502-6812-9216" title="전화" class="icon-btn-modern call-icon"><i
+                                class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
             </div>
@@ -1483,46 +1553,38 @@
                 <div class="account-row">
                     <span><strong>아버지 김응빈</strong><br>NH농협은행<br>302-0859-9890-91</span>
                     <div class="btn-group-modern">
-                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3020859989091"><i class="fa-solid fa-copy"></i></button>
-                        <a href="http://aq.gy/f/DaZjC" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
-                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3020859989091"><i
+                                class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/DaZjC" target="_blank" title="송금" class="icon-btn-modern send-icon"><i
+                                class="fa-solid fa-won-sign"></i></a>
+                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화"
+                           class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
                 <div class="account-row">
                     <span><strong>어머니 임성미</strong><br>NH농협은행<br>302-1430-0848-21</span>
                     <div class="btn-group-modern">
-                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3021430084821"><i class="fa-solid fa-copy"></i></button>
-                        <a href="http://aq.gy/f/fEp8u" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
-                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3021430084821"><i
+                                class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/fEp8u" target="_blank" title="송금" class="icon-btn-modern send-icon"><i
+                                class="fa-solid fa-won-sign"></i></a>
+                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화"
+                           class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
                 <div class="account-row">
                     <span><strong>신부 김채은</strong><br>NH농협은행<br>302-0884-0299-41</span>
                     <div class="btn-group-modern">
-                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3020884029941"><i class="fa-solid fa-copy"></i></button>
-                        <a href="http://aq.gy/f/CGMf1" target="_blank" title="송금" class="icon-btn-modern send-icon"><i class="fa-solid fa-won-sign"></i></a>
-                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화" class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
+                        <button title="복사" class="icon-btn-modern copy-icon" data-clipboard-text="3020884029941"><i
+                                class="fa-solid fa-copy"></i></button>
+                        <a href="http://aq.gy/f/CGMf1" target="_blank" title="송금" class="icon-btn-modern send-icon"><i
+                                class="fa-solid fa-won-sign"></i></a>
+                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화"
+                           class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
             </div>
         </section>
-
-<!--        <section id="clip" class="content-section">-->
-<!--            <h2 class="title">-->
-<!--                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">-->
-<!--                Clip-->
-<!--                <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">-->
-<!--            </h2>-->
-<!--            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">-->
-<!--                <iframe-->
-<!--                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"-->
-<!--                        src="https://www.youtube.com/embed/w-nHyBtBC_U?si=gWT7dZcDvuW-3JDU"-->
-<!--                        title="YouTube video player" frameborder="0"-->
-<!--                        allow="accelerometer; clipboard-write; encrypted-media; web-share"-->
-<!--                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
-<!--            </div>-->
-
-<!--        </section>-->
 
         <footer>
             <p>저희의 새로운 시작을 <br><br> 축복해주셔서 감사합니다.</p>
@@ -1639,7 +1701,7 @@
             // ▼▼▼ 새로 추가된 부분 ▼▼▼
 
             // 1. 각 비눗방울에 클릭 이벤트 추가
-            bubble.addEventListener('click', function(event) {
+            bubble.addEventListener('click', function (event) {
                 event.stopPropagation(); // 배경 클릭 방지
 
                 const bubbleRect = bubble.getBoundingClientRect();
