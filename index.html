@@ -1445,12 +1445,7 @@
                 <img src="icons/shell.png" alt="조개 아이콘" class="title-icon">
             </h2>
             <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-top: 20px;">
-                <iframe
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                        src="https://www.youtube.com/embed/JyFcsiBTue8?si=5SvRnE_vZvpjT-vW"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div id="youtube-player" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
             </div>
 
         </section>
@@ -1520,7 +1515,7 @@
                                 class="fa-solid fa-copy"></i></button>
                         <a href="http://aq.gy/f/TJZGq" target="_blank" title="송금" class="icon-btn-modern send-icon"><i
                                 class="fa-solid fa-won-sign"></i></a>
-                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화"
+                        <a href="tel:0504-0803-7834" title="전화"
                            class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
@@ -1531,7 +1526,7 @@
                                 class="fa-solid fa-copy"></i></button>
                         <a href="http://aq.gy/f/kP3S6" target="_blank" title="송금" class="icon-btn-modern send-icon"><i
                                 class="fa-solid fa-won-sign"></i></a>
-                        <a href="#" onclick="alert('전화번호가 제공되지 않았습니다.'); return false;" title="전화"
+                        <a href="tel:0502-6821-5536" title="전화"
                            class="icon-btn-modern call-icon"><i class="fa-solid fa-phone"></i></a>
                     </div>
                 </div>
@@ -1913,7 +1908,43 @@
                 }
             });
         });
+
     });
+</script>
+<script>
+    // 1. 유튜브 API 스크립트를 비동기적으로 불러옵니다.
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    // 2. API가 준비되면, 'youtube-player' div에 영상을 생성합니다.
+    // 이 함수는 다른 함수 안에 있으면 안 됩니다.
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtube-player', {
+            videoId: 'JyFcsiBTue8',
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    // 3. 영상 상태가 바뀌면(예: 재생, 정지) 이 함수가 실행됩니다.
+    // 3. 영상 상태가 바뀌면(예: 재생, 정지) 이 함수가 실행됩니다.
+    function onPlayerStateChange(event) {
+        const bgmPlayer = document.getElementById('bgm-player');
+        if (!bgmPlayer) return; // bgm 플레이어가 없으면 함수 종료
+
+        // 영상이 '재생'되면 배경음악을 정지합니다.
+        if (event.data == YT.PlayerState.PLAYING) {
+            bgmPlayer.pause();
+        }
+        // 영상이 '일시정지' 되거나 '종료'되면 배경음악을 다시 재생합니다.
+        else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+            bgmPlayer.play();
+        }
+    }
 </script>
 </body>
 </html>
