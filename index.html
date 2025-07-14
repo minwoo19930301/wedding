@@ -428,7 +428,7 @@
 
         .fade-in-text {
             font-family: 'Hello Bride Script', cursive;
-            font-size: clamp(5rem, 15vw, 40rem);
+            font-size: clamp(5rem, 10vw, 9rem); /* PC에서 최대 크기를 9rem으로 대폭 줄임 */
             line-height: 1.3;
             color: #fff;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -903,6 +903,7 @@
             /* 버튼들을 수평 중앙에 정렬합니다. */
             justify-content: center;
             /* 버튼 사이의 간격을 줍니다. */
+            flex-wrap: nowrap; /* 버튼들이 줄바꿈되지 않도록 설정 */
         }
 
         .btn {
@@ -917,6 +918,7 @@
             font-weight: 700;
             transition: all 0.3s;
             box-shadow: 0 4px 6px rgba(241, 148, 138, 0.4);
+            white-space: nowrap; /* 버튼 안의 텍스트가 줄바꿈되지 않도록 설정 */
         }
 
         .btn:hover {
@@ -1433,6 +1435,28 @@
                         <li>
                             <strong>지하철</strong>
                             <p>2호선 잠실역 3번 출구에서 도보 5분 (지하 직통연결통로 이용 시, 롯데백화점 분수대와 롯데리아 사이 복도 통과 후 계단 이용)</p>
+                        </li>
+                        <style>
+                            .bus-line {
+                                display: inline-block;
+                                width: 16px;
+                                height: 16px;
+                                border-radius: 50%;
+                                margin-right: 6px;
+                                vertical-align: middle;
+                                transform: translateY(-1px);
+                            }
+                            .bus-blue { background-color: #0054A6; } /* 간선버스 파란색 */
+                            .bus-green { background-color: #33A341; } /* 지선버스 초록색 */
+                        </style>
+                        <li>
+                            <strong>버스 (롯데백화점 잠실점 하차)</strong>
+                            <p style="margin-top: 8px;">
+                                <span class="bus-line bus-blue"></span> <b>간선 :</b> 301, 341, 351, 360, 362
+                            </p>
+                            <p style="margin-top: 5px;">
+                                <span class="bus-line bus-green"></span> <b>지선 :</b> 2415, 3217, 3313, 3314, 3315, 3317, 3411, 3412, 3414, 4318, 4319
+                            </p>
                         </li>
                     </ul>
                 </div>
