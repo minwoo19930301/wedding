@@ -1051,22 +1051,19 @@
         }
 
         /* 슬라이드 스타일 */
-        .modal-swiper .swiper-slide img {
-            display: block;
-            width: 90%;
-            max-height: 100vh;
-            object-fit: cover; /* 이미지가 컨테이너를 덮도록 자르기 */
-            aspect-ratio: 3 / 4; /* 강제로 3:4 비율 유지 (세로 비율) */
-            pointer-events: none;
+        .modal-swiper .swiper-slide {
+            width: 75%; /* PC 화면에서 너무 커지지 않도록 너비 제한 */
+            aspect-ratio: 3 / 4; /* ⭐ 가로:세로 비율을 3:4로 강제 */
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden; /* 이미지가 틀 밖으로 튀어나가지 않도록 함 */
         }
 
-        /* 슬라이드 내부 이미지 스타일: 가로를 꽉 채우고 세로는 비율에 맞춰 자동 조절 */
+        /* 2. 이미지가 3:4 비율의 슬라이드를 꽉 채우도록 설정합니다. */
         .modal-swiper .swiper-slide img {
-            display: block;
-            width: 100%; /* 슬라이드 너비에 꽉 채움 */
-            height: auto; /* 원래 비율에 맞춰 자동 조절 */
-            max-height: 90vh; /* 최대 높이를 화면 높이의 90%로 제한 (너무 길어지는 것 방지) */
-            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* ⭐ 비율을 유지하면서 컨테이너를 꽉 채웁니다 (넘치는 부분은 잘림). */
         }
 
         /*---  আধুনিক হিসাবের তথ্য 아이콘 버튼 스타일 ---*/
