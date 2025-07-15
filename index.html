@@ -425,6 +425,9 @@
             font-size: 6.8rem;
 
         }
+        body.no-scroll {
+            overflow: hidden;
+        }
 
         .fade-in-text {
             font-family: 'Hello Bride Script', cursive;
@@ -1671,6 +1674,7 @@
 <script>
 
     document.addEventListener('DOMContentLoaded', function () {
+        document.body.classList.add('no-scroll');
         const introSection = document.getElementById('intro');
         const bgmPlayer = document.getElementById('bgm-player');
         document.addEventListener('visibilitychange', function () {
@@ -1779,6 +1783,7 @@
         function fadeOutIntro() {
             if (!introSection.classList.contains('fade-out')) {
                 introSection.classList.add('fade-out');
+                document.body.classList.remove('no-scroll'); // 스크롤 막는 클래스 제거
 
                 const playPromise = bgmPlayer.play();
                 if (playPromise !== undefined) {
