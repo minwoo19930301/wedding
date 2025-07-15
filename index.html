@@ -1672,9 +1672,13 @@
 
 
 <script>
-
+    function preventScroll(e) {
+        e.preventDefault();
+    }
     document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.add('no-scroll');
+        window.addEventListener('touchmove', preventScroll, { passive: false });
+
         const introSection = document.getElementById('intro');
         const bgmPlayer = document.getElementById('bgm-player');
         document.addEventListener('visibilitychange', function () {
@@ -1784,7 +1788,7 @@
             if (!introSection.classList.contains('fade-out')) {
                 introSection.classList.add('fade-out');
                 document.body.classList.remove('no-scroll'); // 스크롤 막는 클래스 제거
-
+                window.removeEventListener('touchmove', preventScroll);
                 const playPromise = bgmPlayer.play();
                 if (playPromise !== undefined) {
                     playPromise.catch(error => {
