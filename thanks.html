@@ -1,127 +1,105 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>진심으로 감사드립니다</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-  <meta name="format-detection" content="telephone=no">
-  <style>
-    /* --- 폰트 정의 (기존 청첩장과 동일) --- */
-    @font-face {
-      font-family: 'DarrelAllura';
-      src: url('fonts/DarrelAllura.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'BookkMyungjo-Bd';
-      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
-      font-weight: 700;
-      font-style: normal;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>진심으로 감사드립니다</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <meta name="format-detection" content="telephone=no">
+    <style>
+        @font-face {
+            font-family: 'DarrelAllura';
+            src: url('fonts/DarrelAllura.ttf') format('truetype');
+        }
 
-    /* --- 색상 변수 정의 (나이트 테마) --- */
-    :root {
-      --text-dark: #f0f0f0;
-      --link-color: #f1948a;
-    }
+        @font-face {
+            font-family: 'BookkMyungjo-Bd';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'BookkMyungjo-Bd', sans-serif;
-      color: var(--text-dark);
-      background: linear-gradient(180deg, #1A237E 0%, #0D1C2A 100%);
-      overflow: hidden;
-      text-align: center;
-    }
+        :root {
+            --text-dark: #f0f0f0;
+            --link-color: #f1948a;
+        }
 
-    .thankyou-container {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      background-image: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbXPJ87%2FbtsOTQGKlNH%2FAAAAAAAAAAAAAAAAAAAAAEA7U1UCBxGQb4DNMbkKlYbdZi-TMeOpQ8bE-hbYylCr%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1756652399%26allow_ip%3D%26allow_referer%3D%26signature%3DKlBXuNx%252FuU6y8IAftPAiQ8wwtKg%253D');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center; /* 텍스트를 세로 중앙으로 */
-      align-items: center;
-      text-align: center;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'BookkMyungjo-Bd', sans-serif;
+            color: var(--text-dark);
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
 
-    /* 텍스트 컨테이너 */
-    .thankyou-text-box {
-      background-color: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(5px);
-      border-radius: 12px;
-      padding: 40px 25px;
-      max-width: 90%;
-      line-height: 1.8;
-      font-size: clamp(1.1rem, 3.5vw, 1.3rem);
-      margin-top: 20vh; /* 이미지 아래쪽에 위치하도록 조정 */
-    }
+        .thankyou-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbXPJ87%2FbtsOTQGKlNH%2FAAAAAAAAAAAAAAAAAAAAAEA7U1UCBxGQb4DNMbkKlYbdZi-TMeOpQ8bE-hbYylCr%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1756652399%26allow_ip%3D%26allow_referer%3D%26signature%3DKlBXuNx%252FuU6y8IAftPAiQ8wwtKg%253D');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 텍스트를 세로 중앙으로 */
+            align-items: center;
+            text-align: center;
+        }
 
-    .thankyou-text-box p {
-      margin: 0;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-    }
+        .thankyou-text-box {
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
+            padding: 30px 20px;
+            max-width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            line-height: 1.7;
+            font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+        }
 
-    .highlight-text {
-      display: block;
-      margin-top: 15px;
-      font-size: clamp(1.3rem, 4.5vw, 1.6rem);
-      font-family: 'DarrelAllura', cursive;
-      color: var(--link-color);
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-    }
+        .thankyou-text-box p {
+            margin: 0 0 10px 0;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
 
-    /* 버튼 스타일 (기존 청첩장과 동일) */
-    .btn {
-      display: inline-block;
-      padding: 12px 25px;
-      margin-top: 30px;
-      border: none;
-      background-color: var(--link-color);
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: 700;
-      transition: all 0.3s;
-      box-shadow: 0 4px 6px rgba(241, 148, 138, 0.4);
-      white-space: nowrap;
-    }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin-top: 20px;
+            border: none;
+            background-color: var(--link-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(241, 148, 138, 0.4);
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(241, 148, 138, 0.5);
-    }
-
-  </style>
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(241, 148, 138, 0.5);
+        }
+    </style>
 </head>
 <body>
 <div class="thankyou-container">
-  <div class="thankyou-text-box">
-    <p>
-      바쁘신 와중에도 귀한 걸음 해 주신 분들과<br>
-      멀리서 마음으로 축복해주신 모든 분들께<br>
-      진심으로 감사드립니다.<br><br>
-    </p>
-    <p>
-      덕분에 결혼식 잘 마무리 할 수 있었습니다.<br><br>
-    </p>
-    <p>
-      앞으로도 기쁜 일이든 슬픈 일이든<br>
-      언제든지 편히 불러주시면<br> 기꺼이 함께하겠습니다.
-    </p>
-
-    <p>
-      <br>
-      다시 한번 감사합니다.
-    </p>
-
-    <a href="./index.html" class="btn">청첩장 다시 보기</a>
-  </div>
+    <div class="thankyou-text-box">
+        <p>바쁘신 와중에도 귀한 걸음 해 주신 분들과<br>멀리서 마음으로 축복해주신 모든 분들께<br>진심으로 감사드립니다.<br><br></p>
+        <p>덕분에 결혼식 잘 마무리 할 수 있었습니다.<br><br></p>
+        <p>앞으로도 기쁜 일이든 슬픈 일이든<br>언제든지 편히 불러주시면<br>기꺼이 함께하겠습니다.</p>
+        <p><br>다시 한번 감사합니다.</p>
+        <a href="./index.html" class="btn">청첩장 다시 보기</a>
+    </div>
 </div>
 </body>
 </html>
