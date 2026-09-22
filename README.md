@@ -1,11 +1,5 @@
 # 💍 Mobile Wedding Invitation & Thanks Page
 
-<!-- PROJECT-PRESENTATION:START -->
-<a href="https://minwoo19930301.github.io/wedding/"><img src=".github/project-cover.svg" alt="💍 Mobile Wedding Invitation &amp; Thanks Page" width="960"></a>
-
-[![OPEN APP](https://img.shields.io/badge/OPEN%20APP-2C6049?style=for-the-badge)](https://minwoo19930301.github.io/wedding/) [![SOURCE](https://img.shields.io/badge/SOURCE-444444?style=for-the-badge)](https://github.com/minwoo19930301/wedding)
-<!-- PROJECT-PRESENTATION:END -->
-
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Active-brightgreen?style=flat-square&logo=github)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
