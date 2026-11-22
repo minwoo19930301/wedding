@@ -1,5 +1,11 @@
 # 💍 Mobile Wedding Invitation & Thanks Page
 
+<!-- LIVE-LINK:START -->
+<p align="center">
+  <a href="https://minwoo19930301.github.io/wedding/"><img alt="바로 가기: minwoo19930301.github.io/wedding" src="https://img.shields.io/badge/%E2%96%B6%20%EB%B0%94%EB%A1%9C%20%EA%B0%80%EA%B8%B0-minwoo19930301.github.io%2Fwedding-ff5a5f?style=for-the-badge"></a>
+</p>
+<!-- LIVE-LINK:END -->
+
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Active-brightgreen?style=flat-square&logo=github)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
